@@ -13,19 +13,36 @@ abstract public class Reunion <T>{
     private Instant horarioInicio;
     private Instant horarioFIn;
 
-    abstract public List<T> obtenerAsistencias();
-    abstract public List<T> obtenerAusencias();
-    abstract public List<T> obtenerRetrasos();
+    public List<T> obtenerAsistencias();
+    public List<T> obtenerAusencias();
+    public List<T> obtenerRetrasos();
 
-    public Reunion(){};
+    public Reunion(Date fecha, Instant horaPrevista, Duration duracionPrevista){
+        this.fecha = fecha;
+        this.horaPrevista = horaPrevista;
+        this.duracionPrevista = duracionPrevista;
+    }
 
-    abstract public int obtenerTotalAsistencia();
-    abstract public float obtenerPorcentajeAsistencia();
+    public int obtenerTotalAsistencia(){
+        return obtenerAsistencias().size();
+    }
 
-    abstract public float calcularTiempo();
+    public float obtenerPorcentajeAsistencia(){
+        return (obtenerTotalAsistencia()/(obtenerTotalAsistencia() + obtenerAusencias().size()))*100;
+    }
 
-    abstract public void iniciar();
-    abstract public void finalizar();
+    public float calcularTiempoReal(){
+        return Duration.between(this.horarioInicio, this.horarioFIn).toMinutes();
+    }
+
+    public void iniciar(){
+        this.fecha = new Date();
+        this.horarioInicio = Instant.now();
+    }
+    
+    public void finalizar(){
+        this.horarioFIn = Instant.now();
+    }
 
 
 

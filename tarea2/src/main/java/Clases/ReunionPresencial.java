@@ -1,24 +1,14 @@
 package Clases;
 
-import java.util.List;
+import java.time.Instant;
+import java.time.Duration;
+import java.util.Date;
 
 public class ReunionPresencial extends Reunion{
-    public List<Asistencia> obtenerAsistencias(){};
-    public List<Asistencia> obtenerAusencias( ){};
-    public List<Asistencia> obtenerRetrasos(){};
-    public int obtenerTotalAsistencia(){
-        return 0;
-    };
-    public float obtenerPorcentajeAsistencia(){
-        return 0;
-    };
-
-    public float calcularTiempo(){
-        return 0;
-    };
-
-    public void iniciar(){};
-    public void finalizar(){};
-
     private String sala;
+    
+    ReunionPresencial(Date fecha, Instant horaPrevista, Duration duracionPrevista, String sala){
+        super(fecha, horaPrevista, duracionPrevista);
+        this.sala = sala;
+    }
 }
