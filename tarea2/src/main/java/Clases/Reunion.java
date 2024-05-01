@@ -2,10 +2,11 @@ package Clases;
 
 import java.time.Instant;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-abstract public class Reunion <T>{
+abstract public class Reunion{
 
     private Date fecha;
     private Instant horaPrevista;
@@ -15,34 +16,46 @@ abstract public class Reunion <T>{
     private List<Invitacion> invitacion;
     private List<Asistencia> asistencias;
     private List<Nota> notas;
+    private Empleado organizador;
+    private tipoReunion tipo;
 
     public List<Asistencia> obtenerAsistencias(){
         return asistencias;
     }
 
-    public List<T> obtenerAusencias(){
-
+    public List<Empleado> obtenerAusencias(){           //FALTA COMPLETAR
+        return null;
     }
 
-    public List<T> obtenerRetrasos(){
-
+    public List<Asistencia> obtenerRetrasos(){
+        List<Asistencia> retrasos = new ArrayList<Asistencia>();
+        for(Asistencia asistencia : asistencias){
+            if(asistencia instanceof Retraso){
+                retrasos.add(asistencia);
+            }
+        }
+        return retrasos;
     }
 
-    public Reunion(Date fecha, Instant horaPrevista, Duration duracionPrevista){
+    public Reunion(Empleado organizador,tipoReunion tipo,Date fecha, Instant horaPrevista, Duration duracionPrevista, Nota nota, List<Invitacion> invitacion){
+        this.organizador = organizador;
         this.fecha = fecha;
         this.horaPrevista = horaPrevista;
         this.duracionPrevista = duracionPrevista;
+        this.notas.add(nota);
+        this.invitacion = invitacion;
+        this.tipo = tipo;
     }
 
-    public Date obtenerFecha(){
+    public Date getFecha(){
         return fecha;
     }
 
-    public Instant obtenerHoraPrevista(){
+    public Instant getHoraPrevista(){
         return horaPrevista;
     }
 
-    public Duration obtenerDuracionPrevista(){
+    public Duration getDuracionPrevista(){
         return duracionPrevista;
     }
     
@@ -58,9 +71,10 @@ abstract public class Reunion <T>{
         return Duration.between(this.horarioInicio, this.horarioFIn).toMinutes();
     }
 
-    public void iniciar(){
+    public void iniciar(List<Asistencia> asistencia){
         this.fecha = new Date();
         this.horarioInicio = Instant.now();
+        this.asistencias = asistencia;
     }
     
     public void finalizar(){
@@ -71,4 +85,12 @@ abstract public class Reunion <T>{
         notas.add(nota);
     }
 
+    public Empleado getOrganizador(){
+        return organizador;
+    }
+
+    public tipoReunion getTipo(){
+        return tipo;
+    }
+    
 }

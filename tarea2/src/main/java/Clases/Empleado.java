@@ -15,4 +15,21 @@ public class Empleado implements Invitable{
     }
 
     public void invitar(){};
+
+    public String getId(){
+        return id;
+    }
+
+    public String getNombre(){
+        return nombre;
+    }
+
+    public String getApellidos(){
+        return apellidos;
+    }
+
+    public String getCorreo(){
+        return correo;
+    }
+
 }
