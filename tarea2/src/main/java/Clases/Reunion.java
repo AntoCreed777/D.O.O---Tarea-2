@@ -12,10 +12,21 @@ abstract public class Reunion <T>{
     private Duration duracionPrevista;
     private Instant horarioInicio;
     private Instant horarioFIn;
+    private List<Invitacion> invitacion;
+    private List<Asistencia> asistencias;
+    private List<Nota> notas;
 
-    public List<T> obtenerAsistencias();
-    public List<T> obtenerAusencias();
-    public List<T> obtenerRetrasos();
+    public List<Asistencia> obtenerAsistencias(){
+        return asistencias;
+    }
+
+    public List<T> obtenerAusencias(){
+
+    }
+
+    public List<T> obtenerRetrasos(){
+
+    }
 
     public Reunion(Date fecha, Instant horaPrevista, Duration duracionPrevista){
         this.fecha = fecha;
@@ -23,6 +34,18 @@ abstract public class Reunion <T>{
         this.duracionPrevista = duracionPrevista;
     }
 
+    public Date obtenerFecha(){
+        return fecha;
+    }
+
+    public Instant obtenerHoraPrevista(){
+        return horaPrevista;
+    }
+
+    public Duration obtenerDuracionPrevista(){
+        return duracionPrevista;
+    }
+    
     public int obtenerTotalAsistencia(){
         return obtenerAsistencias().size();
     }
@@ -44,6 +67,8 @@ abstract public class Reunion <T>{
         this.horarioFIn = Instant.now();
     }
 
-
+    public void agregarNota(Nota nota){
+        notas.add(nota);
+    }
 
 }
