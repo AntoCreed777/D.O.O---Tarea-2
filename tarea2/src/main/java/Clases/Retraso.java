@@ -11,6 +11,17 @@ public class Retraso extends Asistencia {
     private Instant hora;
 
     /**
+     * Constructor de la clase Retraso.
+     * @param empleado
+     * @param hora
+     */
+
+    public Retraso(Empleado empleado, Instant hora) {
+        super(empleado);
+        this.hora = hora;
+    }
+    
+    /**
      * Funcion que establece la hora del retraso.
      * @param hora
      */
