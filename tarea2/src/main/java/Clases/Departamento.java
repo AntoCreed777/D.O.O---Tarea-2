@@ -60,4 +60,13 @@ public class Departamento implements Invitable{
             empleado.invitar();
         }
     }
+
+    /**
+     * Funcion que retorna la lista de empleados del departamento.
+     * @return Lista de empleados del departamento.
+     */
+
+    public List<Empleado> getEmpleados(){
+        return empleados;
+    }
 }
