@@ -18,7 +18,7 @@ abstract public class Reunion{
     private Duration duracionPrevista;
     private Instant horarioInicio;
     private Instant horarioFIn;
-    private List<Invitacion> invitacion;
+    private List<Invitacion> invitaciones;
     private List<Asistencia> asistencias;
     private List<Nota> notas;
     private Empleado organizador;
@@ -36,8 +36,27 @@ abstract public class Reunion{
      * Funcion que retorna la lista de las ausencias de la reunion.
      * @return  Lista de ausencias de la reunion.
      */
-    public List<Empleado> obtenerAusencias(){           //!!!!FALTA IMPLEMENTAR!!!!//
-        return null;
+    public List<Empleado> obtenerAusencias(){
+        List<Empleado> ausencias = new ArrayList<Empleado>();       //Lista de ausentes a la reunion
+        List<Empleado> auxinvitacion = new ArrayList<Empleado>();   //Lista de invitados a la reunion (Solo Empleados, ninguna Departamento)
+
+        for(Invitacion invitacion : invitaciones){                  //Se recorren las invitaciones
+            if(invitacion.getInvitado() instanceof Departamento){   //Si el invitado es un Departamento
+                for(Empleado empleado : ((Departamento)invitacion.getInvitado()).getEmpleados()){   //Se recorren los empleados del departamento
+                    auxinvitacion.add(empleado);                    //Se agregan a la lista de invitados
+                }
+            }
+            else{
+                auxinvitacion.add((Empleado)invitacion.getInvitado());  //Si el invitado es un Empleado, se agrega a la lista de invitados
+            }
+        }
+
+        for(Empleado empleado : auxinvitacion){                 //Se recorren los invitados
+            if(!asistencias.contains((Object)empleado)){        //Si el empleado no esta en la lista de asistencias
+                ausencias.add(empleado);                        //Se agrega a la lista de ausentes
+            }
+        }
+        return ausencias;                                    //Se retorna la lista de ausentes
     }
 
     /**
@@ -70,7 +89,7 @@ abstract public class Reunion{
         this.horaPrevista = horaPrevista;
         this.duracionPrevista = duracionPrevista;
         this.notas.add(nota);
-        this.invitacion = invitacion;
+        this.invitaciones = invitacion;
         this.tipo = tipo;
     }
 
