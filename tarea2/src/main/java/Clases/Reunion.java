@@ -5,17 +5,17 @@ import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 
-abstract public class Reunion <T>{
+abstract public class Reunion{
 
     private Date fecha;
     private Instant horaPrevista;
     private Duration duracionPrevista;
     private Instant horarioInicio;
-    private Instant horarioFIn;
+    private Instant horarioFin;
 
-    public List<T> obtenerAsistencias();
-    public List<T> obtenerAusencias();
-    public List<T> obtenerRetrasos();
+    public List<Asistencia> obtenerAsistencias();
+    public List<Asistencia> obtenerAusencias();
+    public List<Asistencia> obtenerRetrasos();
 
     public Reunion(Date fecha, Instant horaPrevista, Duration duracionPrevista){
         this.fecha = fecha;
@@ -41,9 +41,25 @@ abstract public class Reunion <T>{
     }
     
     public void finalizar(){
-        this.horarioFIn = Instant.now();
+        this.horarioFin = Instant.now();
+    }
+    
+    
+    // getters para obtener hora, fecha, horarioInicio, horarioFin, etc para informe
+
+    public Instant getHora(){
+        return horaPrevista;
     }
 
-
+    public Date getFecha(){
+        return fecha;
+    }
+    public Instant getHorarioInicio(){
+        return horarioInicio;
+    }
+    public Instant getHorarioFin(){
+        return horarioFin;
+    }
+    
 
 }
