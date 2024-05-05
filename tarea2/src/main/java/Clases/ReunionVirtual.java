@@ -12,4 +12,8 @@ public class ReunionVirtual extends Reunion{
         super(fecha, horaPrevista, duracionPrevista);
         this.enlace = enlace;
     }
+
+    public String getEnlace(){
+        return enlace;
+    }
 }
