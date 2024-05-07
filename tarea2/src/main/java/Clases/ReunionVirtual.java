@@ -26,7 +26,7 @@ public class ReunionVirtual extends Reunion{
      * @param enlace Enlace de la reunion.
      */
     ReunionVirtual(Empleado organizador,tipoReunion tipo,Date fecha, Instant horaPrevista, Duration duracionPrevista, Nota nota, List<Invitacion> invitacion, String enlace){
-        super(organizador,tipo,fecha, horaPrevista, duracionPrevista, nota, invitacion);
+        super(organizador,tipo,fecha, horaPrevista, duracionPrevista, invitacion);
         this.enlace = enlace;
     }
 

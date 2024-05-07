@@ -37,7 +37,7 @@ abstract public class Reunion{
      * @param nota Nota de la reunion.
      * @param invitacion Lista de invitaciones a la reunion.
      */
-    public Reunion(Empleado organizador,tipoReunion tipo,Date fecha, Instant horaPrevista, Duration duracionPrevista, Nota nota, List<Invitacion> invitacion){
+    public Reunion(Empleado organizador,tipoReunion tipo,Date fecha, Instant horaPrevista, Duration duracionPrevista, List<Invitacion> invitacion){
         this.organizador = organizador;
         this.fecha = fecha;
         this.horaPrevista = horaPrevista;
@@ -45,8 +45,7 @@ abstract public class Reunion{
         this.invitaciones = invitacion;
         this.tipo = tipo;
 
-        this.notas = new ArrayList<Nota>();
-        this.notas.add(nota);
+        this.notas = new ArrayList<Nota>(); // Crear lista para luego guardar las notas.
     }
 
 
