@@ -27,9 +27,9 @@ public class Informe {
     private List<Nota> notas;
     private List<Asistencia> asistentes;
 
-    private List<Invitacion> listaParticipantes; // presentes o invitados?
 
     public Informe(Reunion reunion){
+        // guardar los detalles de la reunion en variables
         this.fecha = reunion.getFecha();
         this.duracionTotal = reunion.calcularTiempoReal();
         this.horaPrevista = reunion.getHora();
@@ -39,17 +39,28 @@ public class Informe {
         this.asistentes = reunion.obtenerAsistencias();
         this.tipo = reunion.getTipo();
         
+
+        //dependiendo de si la reunion es virtual o presencial se usa la variable enlace o sala 
         if(reunion instanceof ReunionPresencial){
             this.sala = ((ReunionPresencial) reunion).getSala();
-
-        } else if (reunion instanceof ReunionVirtual){
+        } 
+        else if (reunion instanceof ReunionVirtual){
             this.enlace = ((ReunionVirtual) reunion).getEnlace();
         }        
     }
 
+
+    
+    /**
+     * Funcion que genera un archivo de texto con los detalles de la reunion que fue pasada como argumento.
+     * @param Reunion Reunion de la cual se quiere generar el informe.
+     */
+
     public void exportarInformeTXT(String nombre){
         
         try {
+
+            // escribir detalles de la reunion
             BufferedWriter writer = new BufferedWriter(new FileWriter(nombre));
             writer.write("Reunion tipo " + tipo);
             writer.write("\n\nFecha: " + fecha);

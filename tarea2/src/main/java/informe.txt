@@ -1,9 +1,9 @@
 Reunion tipo MARKETING
 
-Fecha: Tue May 07 17:26:02 CLT 2024
-Hora prevista: 2024-05-07T21:26:02.345422300Z
-Hora de inicio: 2024-05-07T21:26:02.351439200Z, Hora de fin: 2024-05-07T21:26:04.365818600Z
-Duracion total: 0.0 minutos.
+Fecha: Tue May 07 17:47:15 CLT 2024
+Hora prevista: 2024-05-07T21:47:15.830933Z
+Hora de inicio: 2024-05-07T21:47:15.832580300Z, Hora de fin: 2024-05-07T21:47:17.847992600Z
+Duracion total: 2.0 minutos.
 
 Sala: Sala Informática TM
 Asistentes: 
