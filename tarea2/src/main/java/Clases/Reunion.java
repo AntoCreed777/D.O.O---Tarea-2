@@ -22,9 +22,33 @@ abstract public class Reunion{
     private Instant horarioFin;
     private List<Invitacion> invitaciones;
     private List<Asistencia> asistencias;
-    private List<Nota> notas;
+    private List<Nota> notas = null;
     private Empleado organizador;
     private tipoReunion tipo;
+
+
+     /**
+     * Constructor de la clase Reunion.
+     * @param organizador Empleado organizador de la reunion.
+     * @param tipo Tipo de reunion.
+     * @param fecha Fecha de la reunion.
+     * @param horaPrevista Hora prevista de la reunion.
+     * @param duracionPrevista Duracion prevista de la reunion.
+     * @param nota Nota de la reunion.
+     * @param invitacion Lista de invitaciones a la reunion.
+     */
+    public Reunion(Empleado organizador,tipoReunion tipo,Date fecha, Instant horaPrevista, Duration duracionPrevista, Nota nota, List<Invitacion> invitacion){
+        this.organizador = organizador;
+        this.fecha = fecha;
+        this.horaPrevista = horaPrevista;
+        this.duracionPrevista = duracionPrevista;
+        this.invitaciones = invitacion;
+        this.tipo = tipo;
+
+        this.notas = new ArrayList<Nota>();
+        this.notas.add(nota);
+    }
+
 
     /**
      * Funcion que retorna la lista de las asistencias de la reunion.
@@ -75,26 +99,7 @@ abstract public class Reunion{
         return retrasos;
     }
 
-    /**
-     * Constructor de la clase Reunion.
-     * @param organizador Empleado organizador de la reunion.
-     * @param tipo Tipo de reunion.
-     * @param fecha Fecha de la reunion.
-     * @param horaPrevista Hora prevista de la reunion.
-     * @param duracionPrevista Duracion prevista de la reunion.
-     * @param nota Nota de la reunion.
-     * @param invitacion Lista de invitaciones a la reunion.
-     */
-    public Reunion(Empleado organizador,tipoReunion tipo,Date fecha, Instant horaPrevista, Duration duracionPrevista, Nota nota, List<Invitacion> invitacion){
-        this.organizador = organizador;
-        this.fecha = fecha;
-        this.horaPrevista = horaPrevista;
-        this.duracionPrevista = duracionPrevista;
-        this.notas.add(nota);
-        this.invitaciones = invitacion;
-        this.tipo = tipo;
-    }
-
+   
     /**
      * Funcion que retorna la fecha de la reunion.
      * @return Fecha de la reunion.

@@ -13,6 +13,7 @@ import java.util.List;
  */
 
 public class Informe {
+
     private Date fecha;
     private Instant horaPrevista;
 
@@ -42,11 +43,11 @@ public class Informe {
         }        
     }
 
-    public void exportarInformeTXT(){
+    public void exportarInformeTXT(String nombre){
 
         
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("informe.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(nombre));
             writer.write("string");
             writer.close();
         } catch (IOException e) {
@@ -56,3 +57,5 @@ public class Informe {
         
     };
 }
+
+// git commit -m "desarrollo de metodo exportarInformeTXT"
