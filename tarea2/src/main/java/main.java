@@ -1,13 +1,7 @@
 
 
-import Clases.Nota;
-import Clases.Reunion;
-import Clases.ReunionPresencial;
-import Clases.ReunionVirtual;
-import Clases.tipoReunion;
-import Clases.Empleado;
-import Clases.Invitacion;
-import Clases.Informe;
+import Clases.*;
+
 import java.util.Date;
 import java.time.Instant;
 import java.time.Duration;
@@ -44,6 +38,14 @@ public class main {
 
         //Empleado organizador,tipoReunion tipo,Date fecha, Instant horaPrevista, Duration duracionPrevista, Nota nota, List<Invitacion> invitacion, String sala
         Reunion reunion = new ReunionPresencial(vq, tipoReunion.MARKETING, fecha,horaPrevista, duracionPrevista, n1, invitados, "sala1" );
+
+        Asistencia a1 = new Asistencia(vq);
+        List<Asistencia> asistentes = new ArrayList<Asistencia>();
+        asistentes.add(a1);
+
+        reunion.iniciar(asistentes);
+        // Thread.sleep(2000);
+        reunion.finalizar();
 
         Informe informe = new Informe(reunion);
         informe.exportarInformeTXT("informe.txt");

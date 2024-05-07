@@ -1,1 +1,12 @@
-string
+Reunion tipo MARKETING
+Fecha: Tue May 07 12:50:39 CLT 2024
+Hora prevista: 2024-05-07T16:50:39.719391400Z
+Hora de inicio: 2024-05-07T16:50:39.735523700Z, Hora de fin: 2024-05-07T16:50:39.735523700Z
+Sala: sala1
+Asistentes: 
+    valeria quiroga, 
+
+
+Notas: 
+       - nota1
+

@@ -24,6 +24,7 @@ public class Informe {
     private String enlace = null;
     private String sala = null;
     private List<Nota> notas;
+    private List<Asistencia> asistentes;
 
     private List<Invitacion> listaParticipantes; // presentes o invitados?
 
@@ -33,6 +34,7 @@ public class Informe {
         this.horarioInicio = reunion.getHorarioInicio();
         this.horarioFin = reunion.getHorarioFin();
         this.notas = reunion.getNotas();
+        this.asistentes = reunion.obtenerAsistencias();
         this.tipo = reunion.getTipo();
         
         if(reunion instanceof ReunionPresencial){
@@ -48,7 +50,36 @@ public class Informe {
         
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(nombre));
-            writer.write("string");
+            writer.write("Reunion tipo " + tipo);
+            writer.write("\nFecha: " + fecha);
+            writer.write("\nHora prevista: " + horaPrevista);
+            writer.write("\nHora de inicio: " + horarioInicio);
+            writer.write(", Hora de fin: " + horarioFin);
+
+            if(enlace != null){ writer.write("\nEnlace: " + enlace);}
+            else if(sala != null){ writer.write("\nSala: " + sala);}
+
+
+            // escribir empleados asistentes.
+            writer.write("\nAsistentes: \n    ");
+            for(Asistencia a: asistentes){
+
+                String empleado = a.getEmpleado().getNombre() + " " + a.getEmpleado().getApellidos();
+                writer.write(empleado + ", ");
+            }
+            writer.write("\n\n");
+
+
+            //Escirbir las notas tomadas.
+            writer.write("\nNotas: ");
+            for(Nota n: notas){
+
+                writer.write("\n       - " + n.getContenido());
+            }
+            writer.write("\n\n");
+
+
+
             writer.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
