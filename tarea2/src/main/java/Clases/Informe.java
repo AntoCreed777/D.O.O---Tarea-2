@@ -3,6 +3,7 @@ package Clases;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -16,9 +17,9 @@ public class Informe {
 
     private Date fecha;
     private Instant horaPrevista;
-
     private Instant horarioInicio;
     private Instant horarioFin;
+    private float duracionTotal;
 
     private tipoReunion tipo;
     private String enlace = null;
@@ -30,6 +31,7 @@ public class Informe {
 
     public Informe(Reunion reunion){
         this.fecha = reunion.getFecha();
+        this.duracionTotal = reunion.calcularTiempoReal();
         this.horaPrevista = reunion.getHora();
         this.horarioInicio = reunion.getHorarioInicio();
         this.horarioFin = reunion.getHorarioFin();
@@ -46,24 +48,23 @@ public class Informe {
     }
 
     public void exportarInformeTXT(String nombre){
-
         
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(nombre));
             writer.write("Reunion tipo " + tipo);
-            writer.write("\nFecha: " + fecha);
+            writer.write("\n\nFecha: " + fecha);
             writer.write("\nHora prevista: " + horaPrevista);
             writer.write("\nHora de inicio: " + horarioInicio);
             writer.write(", Hora de fin: " + horarioFin);
+            writer.write("\nDuracion total: " + duracionTotal + " minutos.");
 
-            if(enlace != null){ writer.write("\nEnlace: " + enlace);}
-            else if(sala != null){ writer.write("\nSala: " + sala);}
-
+            // imprimir el enlace o sala dependiendo del tipo de reunion
+            if(enlace != null){ writer.write("\n\nEnlace: " + enlace);}
+            else if(sala != null){ writer.write("\n\nSala: " + sala);}
 
             // escribir empleados asistentes.
             writer.write("\nAsistentes: \n    ");
             for(Asistencia a: asistentes){
-
                 String empleado = a.getEmpleado().getNombre() + " " + a.getEmpleado().getApellidos();
                 writer.write(empleado + ", ");
             }
@@ -71,15 +72,16 @@ public class Informe {
 
 
             //Escirbir las notas tomadas.
-            writer.write("\nNotas: ");
+            writer.write("\nNotas: \n\n");
+
+            int i = 1;
             for(Nota n: notas){
 
-                writer.write("\n       - " + n.getContenido());
+                writer.write("Nota " + i + ":\n");
+                writer.write(n.getContenido() + "\n\n");
+                i++;
             }
-            writer.write("\n\n");
-
-
-
+           
             writer.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -89,4 +91,3 @@ public class Informe {
     };
 }
 
-// git commit -m "desarrollo de metodo exportarInformeTXT"
