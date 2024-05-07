@@ -13,9 +13,9 @@ abstract public class Reunion{
     private Instant horarioInicio;
     private Instant horarioFin;
 
-    public List<Asistencia> obtenerAsistencias();
-    public List<Asistencia> obtenerAusencias();
-    public List<Asistencia> obtenerRetrasos();
+    public List<Asistencia> obtenerAsistencias(){};
+    public List<Asistencia> obtenerAusencias(){};
+    public List<Asistencia> obtenerRetrasos(){};
 
     public Reunion(Date fecha, Instant horaPrevista, Duration duracionPrevista){
         this.fecha = fecha;
@@ -32,7 +32,7 @@ abstract public class Reunion{
     }
 
     public float calcularTiempoReal(){
-        return Duration.between(this.horarioInicio, this.horarioFIn).toMinutes();
+        return Duration.between(this.horarioInicio, this.horarioFin).toMinutes();
     }
 
     public void iniciar(){
