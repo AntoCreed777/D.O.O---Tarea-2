@@ -67,7 +67,7 @@ public class Informe {
             writer.write("\nHora prevista: " + horaPrevista);
             writer.write("\nHora de inicio: " + horarioInicio);
             writer.write(", Hora de fin: " + horarioFin);
-            writer.write("\nDuracion total: " + duracionTotal + " minutos.");
+            writer.write("\nDuracion total: " + duracionTotal + " segundos.");
 
             // imprimir el enlace o sala dependiendo del tipo de reunion
             if(enlace != null){ writer.write("\n\nEnlace: " + enlace);}
