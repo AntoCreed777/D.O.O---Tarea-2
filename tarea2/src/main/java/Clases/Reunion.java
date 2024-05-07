@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Clase que representa una reunion de una empresa.
  * @autor Valeria Quiroga
- * @autor Amtonio Benavides
+ * @autor Antonio Benavides
  */
 
 abstract public class Reunion{
@@ -166,11 +166,19 @@ abstract public class Reunion{
         return horaPrevista;
     }
 
-
-   
+    /**
+     * Funcion que retorna el horario de inicio de la reunion.
+     * @return Horario de inicio.
+     */
     public Instant getHorarioInicio(){
         return horarioInicio;
     }
+
+    /**
+     * Funcion que retorna el horario del fin de reunion.
+     * @return Horario de fin.
+     */
+
     public Instant getHorarioFin(){
         return horarioFin;
     }
@@ -199,5 +207,14 @@ abstract public class Reunion{
     public tipoReunion getTipo(){
         return tipo;
     }
+
+     /**
+     * Funcion que retorna la lista de notas.
+     * @return Lista notas.
+     */
+    public List<Nota> getNotas(){
+        return notas;
+    }
+
     
 }
