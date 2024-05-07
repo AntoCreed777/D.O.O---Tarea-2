@@ -36,8 +36,9 @@ public class main {
         invitados.add(i2);
            
     
-        Reunion reunion = new ReunionPresencial(vq, tipoReunion.MARKETING, fecha,horaPrevista, duracionPrevista, n1, invitados, "Sala Informática TM" );
+        Reunion reunion = new ReunionPresencial(vq, tipoReunion.MARKETING, fecha,horaPrevista, duracionPrevista, invitados, "Sala Informática TM" );
 
+        reunion.agregarNota(n1);
         reunion.agregarNota(n2);
         
         Asistencia a1 = new Asistencia(vq);

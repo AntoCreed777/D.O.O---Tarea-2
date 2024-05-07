@@ -37,7 +37,7 @@ abstract public class Reunion{
      * @param nota Nota de la reunion.
      * @param invitacion Lista de invitaciones a la reunion.
      */
-    public Reunion(Empleado organizador,tipoReunion tipo,Date fecha, Instant horaPrevista, Duration duracionPrevista, Nota nota, List<Invitacion> invitacion){
+    public Reunion(Empleado organizador,tipoReunion tipo,Date fecha, Instant horaPrevista, Duration duracionPrevista, List<Invitacion> invitacion){
         this.organizador = organizador;
         this.fecha = fecha;
         this.horaPrevista = horaPrevista;
@@ -45,12 +45,31 @@ abstract public class Reunion{
         this.invitaciones = invitacion;
         this.tipo = tipo;
 
-        this.notas = new ArrayList<Nota>();
-        this.notas.add(nota);
+        this.notas = new ArrayList<Nota>(); // Crear lista para luego guardar las notas.
     }
 
 
     /**
+     * Funcion que inicia la reunion marcando la hora de inicio y la lista de asistencias.
+     * @param asistencia Lista de asistencias de la reunion.
+     */
+    public void iniciar(List<Asistencia> asistencia){
+        this.horarioInicio = Instant.now();
+        this.asistencias = asistencia;
+    }
+    
+    /**
+     * Funcion que finaliza la reunion marcando la hora de finalizacion.
+     */
+    public void finalizar(){
+        this.horarioFin = Instant.now();
+    }
+    
+
+    
+    //#region CALCULOS Y SETTERS
+
+     /**
      * Funcion que retorna la lista de las asistencias de la reunion.
      * @return Lista de asistencias de la reunion.
      */
@@ -98,8 +117,44 @@ abstract public class Reunion{
         }
         return retrasos;
     }
+    
+    /**
+     * Funcion que retorna la cantidad de asistencias de la reunion.
+     * @return Cantidad de asistencias de la reunion.
+     */
+    public int obtenerTotalAsistencia(){
+        return obtenerAsistencias().size();
+    }
 
-   
+    /**
+     * Funcion que retorna el porcentaje de asistencia de la reunion.
+     * @return Porcentaje de asistencia de la reunion.
+     */
+    public float obtenerPorcentajeAsistencia(){
+        return (obtenerTotalAsistencia()/(obtenerTotalAsistencia() + obtenerAusencias().size()))*100;
+    }
+
+    
+    /**
+     * Funcion que retorna el tiempo de duracion real de la reunion.
+     * @return Tiempo de duracion real de la reunion.
+     */
+    public float calcularTiempoReal(){
+        return Duration.between(this.horarioInicio, this.horarioFin).toSeconds();
+    }
+
+    
+    /**
+     * Funcion que agrega una nota a la reunion.
+     * @param nota Nota a agregar.
+     */
+    public void agregarNota(Nota nota){
+        notas.add(nota);
+    }
+
+    
+    //#region GETTER
+
     /**
      * Funcion que retorna la fecha de la reunion.
      * @return Fecha de la reunion.
@@ -123,50 +178,11 @@ abstract public class Reunion{
     public Duration getDuracionPrevista(){
         return duracionPrevista;
     }
-    
-    /**
-     * Funcion que retorna la cantidad de asistencias de la reunion.
-     * @return Cantidad de asistencias de la reunion.
-     */
-    public int obtenerTotalAsistencia(){
-        return obtenerAsistencias().size();
-    }
 
     /**
-     * Funcion que retorna el porcentaje de asistencia de la reunion.
-     * @return Porcentaje de asistencia de la reunion.
+     * Funcion que retorna el la hora prevista para la reunión.
+     * @return El instante de la hora prevista.
      */
-    public float obtenerPorcentajeAsistencia(){
-        return (obtenerTotalAsistencia()/(obtenerTotalAsistencia() + obtenerAusencias().size()))*100;
-    }
-
-    /**
-     * Funcion que retorna el tiempo de duracion real de la reunion.
-     * @return Tiempo de duracion real de la reunion.
-     */
-    public float calcularTiempoReal(){
-        return Duration.between(this.horarioInicio, this.horarioFin).toMinutes();
-    }
-
-    /**
-     * Funcion que inicia la reunion marcando la hora de inicio y la lista de asistencias.
-     * @param asistencia Lista de asistencias de la reunion.
-     */
-    public void iniciar(List<Asistencia> asistencia){
-        this.horarioInicio = Instant.now();
-        this.asistencias = asistencia;
-    }
-    
-    /**
-     * Funcion que finaliza la reunion marcando la hora de finalizacion.
-     */
-    public void finalizar(){
-        this.horarioFin = Instant.now();
-    }
-    
-    
-    // getters para obtener hora, fecha, horarioInicio, horarioFin, etc para informe
-
     public Instant getHora(){
         return horaPrevista;
     }
@@ -188,13 +204,12 @@ abstract public class Reunion{
         return horarioFin;
     }
     
-
     /**
-     * Funcion que agrega una nota a la reunion.
-     * @param nota Nota a agregar.
+     * Funcion que retorna la lista de notas.
+     * @return Lista notas.
      */
-    public void agregarNota(Nota nota){
-        notas.add(nota);
+    public List<Nota> getNotas(){
+        return notas;
     }
 
     /**
@@ -213,13 +228,7 @@ abstract public class Reunion{
         return tipo;
     }
 
-     /**
-     * Funcion que retorna la lista de notas.
-     * @return Lista notas.
-     */
-    public List<Nota> getNotas(){
-        return notas;
-    }
+    
 
     
 }
