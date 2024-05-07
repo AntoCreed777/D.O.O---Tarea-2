@@ -25,8 +25,14 @@ public class ReunionPresencial extends Reunion{
      * @param invitacion Lista de invitaciones de la reunion.
      * @param sala Sala de la reunion.
      */
-    ReunionPresencial(Empleado organizador,tipoReunion tipo,Date fecha, Instant horaPrevista, Duration duracionPrevista, Nota nota, List<Invitacion> invitacion, String sala){
-        super(organizador,tipo,fecha, horaPrevista, duracionPrevista, nota, invitacion);
+    public ReunionPresencial(Empleado organizador,tipoReunion tipo,Date fecha, Instant horaPrevista, Duration duracionPrevista, Nota nota, List<Invitacion> invitacion, String sala){
+        super(organizador, tipo, fecha, horaPrevista, duracionPrevista, nota, invitacion);
         this.sala = sala;
+    }
+
+
+    // getter para 
+    public String getSala(){
+        return sala;
     }
 }
