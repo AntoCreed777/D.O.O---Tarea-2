@@ -1,5 +1,8 @@
 package Clases;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -39,5 +42,17 @@ public class Informe {
         }        
     }
 
-    public void exportarInformeTXT(){};
+    public void exportarInformeTXT(){
+
+        
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("informe.txt"));
+            writer.write("string");
+            writer.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+    };
 }
