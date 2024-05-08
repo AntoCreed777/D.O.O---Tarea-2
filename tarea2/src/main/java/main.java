@@ -24,19 +24,12 @@ public class main {
         List<Nota> notas = new ArrayList<Nota>();
         notas.add(n1);
         notas.add(n2);
-        
-        
+
         Empleado vq = new Empleado("1", "quiroga" , "valeria", "vquiroga");
-        Empleado ab = new Empleado("2", "benavides" , "antonio", "abenavides");
-        Invitacion i1 = new Invitacion(vq);
-        Invitacion i2 = new Invitacion(ab);
+        Reunion reunion = new ReunionPresencial(vq, tipoReunion.MARKETING, fecha,horaPrevista, duracionPrevista, "Sala Informática TM" );
         
-        List<Invitacion> invitados = new ArrayList<Invitacion>();
-        invitados.add(i1);
-        invitados.add(i2);
-           
-    
-        Reunion reunion = new ReunionPresencial(vq, tipoReunion.MARKETING, fecha,horaPrevista, duracionPrevista, invitados, "Sala Informática TM" );
+        Empleado ab = new Empleado("2", "benavides" , "antonio", "abenavides");
+        ab.invitar(reunion);
 
         reunion.agregarNota(n1);
         reunion.agregarNota(n2);
