@@ -7,8 +7,8 @@ import java.util.List;
 
 /**
  * Clase que representa una reunion presencial de una empresa.
- * @autor Valeria Quiroga
- * @autor Antonio Benavides
+ * @author Valeria Quiroga
+ * @author Antonio Benavides
  */
 public class ReunionPresencial extends Reunion{
     

@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * Clase que genera un Informe de una 'Reunion'.
- * @autor Valeria Quiroga
+ * @author  Valeria Quiroga
  */
 
 public class Informe {
