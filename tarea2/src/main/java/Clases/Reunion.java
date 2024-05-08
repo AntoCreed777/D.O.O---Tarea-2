@@ -6,35 +6,32 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * Clase que representa una reunion de una empresa.
  * @autor Valeria Quiroga
  * @autor Antonio Benavides
  */
-
 abstract public class Reunion{
 
-    private Date fecha;
-    private Instant horaPrevista;
-    private Duration duracionPrevista;
+    private final Date fecha;
+    private final Instant horaPrevista;
+    private final Duration duracionPrevista;
     private Instant horarioInicio;
     private Instant horarioFin;
     private List<Invitacion> invitaciones;
     private List<Asistencia> asistencias;
     private List<Nota> notas = null;
     private Empleado organizador;
-    private tipoReunion tipo;
+    private final tipoReunion tipo;
 
 
      /**
-     * Constructor de la clase Reunion.
+     * Constructor en que se inicializan los atributos de la clase.
      * @param organizador Empleado organizador de la reunion.
      * @param tipo Tipo de reunion.
      * @param fecha Fecha de la reunion.
      * @param horaPrevista Hora prevista de la reunion.
      * @param duracionPrevista Duracion prevista de la reunion.
-     * @param nota Nota de la reunion.
      * @param invitacion Lista de invitaciones a la reunion.
      */
     public Reunion(Empleado organizador,tipoReunion tipo,Date fecha, Instant horaPrevista, Duration duracionPrevista, List<Invitacion> invitacion){
@@ -64,8 +61,6 @@ abstract public class Reunion{
     public void finalizar(){
         this.horarioFin = Instant.now();
     }
-    
-
     
     //#region CALCULOS Y SETTERS
 
@@ -143,7 +138,6 @@ abstract public class Reunion{
         return Duration.between(this.horarioInicio, this.horarioFin).toSeconds();
     }
 
-    
     /**
      * Funcion que agrega una nota a la reunion.
      * @param nota Nota a agregar.
@@ -152,7 +146,15 @@ abstract public class Reunion{
         notas.add(nota);
     }
 
-    
+    /**
+     * Funcion que devuelve una descripcion de la clase
+     * @return Descripcion de la clase
+     */
+    @Override
+    public String toString() {
+        return "'Reunion' representa una reunion de una empresa";
+    }
+
     //#region GETTER
 
     /**
@@ -227,8 +229,5 @@ abstract public class Reunion{
     public tipoReunion getTipo(){
         return tipo;
     }
-
-    
-
     
 }

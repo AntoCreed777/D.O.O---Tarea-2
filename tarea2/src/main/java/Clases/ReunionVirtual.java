@@ -8,14 +8,14 @@ import java.util.List;
 /**
  * Clase que representa una reunion virtual de una empresa.
  * @autor Valeria Quiroga
- * @autor Amtonio Benavides
+ * @autor Antonio Benavides
  */
 public class ReunionVirtual extends Reunion{
 
-    private String enlace;
+    private final String enlace;
 
     /**
-     * Constructor de la clase ReunionVirtual.
+     * Constructor en que se inicializan los atributos de la clase.
      * @param organizador Empleado organizador de la reunion.
      * @param tipo Tipo de reunion.
      * @param fecha Fecha de la reunion.
@@ -30,7 +30,20 @@ public class ReunionVirtual extends Reunion{
         this.enlace = enlace;
     }
 
+    /**
+     * Funcion que retorna el enlace de la 'Reunion'
+     * @return enlace de la 'Reunion'
+     */
     public String getEnlace(){
         return enlace;
+    }
+
+    /**
+     * Funcion que devuelve una descripcion de la clase
+     * @return Descripcion de la clase
+     */
+    @Override
+    public String toString() {
+        return super.toString() + "de forma virtual";
     }
 }

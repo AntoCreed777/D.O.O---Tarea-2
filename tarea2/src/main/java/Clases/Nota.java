@@ -3,7 +3,7 @@ package Clases;
 /**
  * Clase que representa una nota de texto.
  * @author Valeria Quiroga
- * @author Amtonio Benavides
+ * @author Antonio Benavides
  */
 public class Nota {
     private String contenido;
@@ -27,5 +27,14 @@ public class Nota {
      */
     public void setContenido(String contenido) {
         this.contenido = contenido;
+    }
+
+    /**
+     * Funcion que devuelve una descripcion de la clase
+     * @return Descripcion de la clase
+     */
+    @Override
+    public String toString() {
+        return "'Nota' representa a una nota de texto que indique algo con respecto a la reunion";
     }
 }

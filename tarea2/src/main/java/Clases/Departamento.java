@@ -5,11 +5,11 @@ import java.util.List;
 /**
  * Clase que representa un departamento de una empresa.
  * @author Valeria Quiroga
- * @author Amtonio Benavides
+ * @author Antonio Benavides
  */
 public class Departamento implements Invitable{
 
-    private String nombre;
+    private final String nombre;
     private List<Empleado> empleados;
 
     /**
@@ -65,8 +65,16 @@ public class Departamento implements Invitable{
      * Funcion que retorna la lista de empleados del departamento.
      * @return Lista de empleados del departamento.
      */
-
     public List<Empleado> getEmpleados(){
         return empleados;
+    }
+
+    /**
+     * Funcion que devuelve una descripcion de la clase
+     * @return Descripcion de la clase
+     */
+    @Override
+    public String toString() {
+        return "'Departamento' representa a un departamento de una Empresa ";
     }
 }
