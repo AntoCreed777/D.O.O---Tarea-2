@@ -32,19 +32,25 @@ abstract public class Reunion{
      * @param fecha Fecha de la reunion.
      * @param horaPrevista Hora prevista de la reunion.
      * @param duracionPrevista Duracion prevista de la reunion.
-     * @param invitacion Lista de invitaciones a la reunion.
      */
-    public Reunion(Empleado organizador,tipoReunion tipo,Date fecha, Instant horaPrevista, Duration duracionPrevista, List<Invitacion> invitacion){
+    public Reunion(Empleado organizador,tipoReunion tipo,Date fecha, Instant horaPrevista, Duration duracionPrevista){
         this.organizador = organizador;
         this.fecha = fecha;
         this.horaPrevista = horaPrevista;
         this.duracionPrevista = duracionPrevista;
-        this.invitaciones = invitacion;
         this.tipo = tipo;
 
+        this.invitaciones = new ArrayList<Invitacion>(); //Crear lista para luego guardar las invitaciones.
         this.notas = new ArrayList<Nota>(); // Crear lista para luego guardar las notas.
     }
 
+    /**
+     * Funcion que agrega un invitado a la Reunion
+     * @param invitacion La Invitacion de Un 'Departamento' o 'Empleado'
+     */
+    public void agregarInvitado(Invitacion invitacion){
+        invitaciones.add(invitacion);
+    }
 
     /**
      * Funcion que inicia la reunion marcando la hora de inicio y la lista de asistencias.

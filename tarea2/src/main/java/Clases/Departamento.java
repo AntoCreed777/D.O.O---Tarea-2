@@ -56,10 +56,9 @@ public class Departamento implements Invitable{
     /**
      * Funcion que invita al Departamento.
      * @param reunion Reunion a la que se invita al 'Departamento'
-     * @return Invitacion del 'Departamento'
      */
-    public Invitacion invitar(Reunion reunion){
-        return new Invitacion(reunion,this);
+    public void invitar(Reunion reunion){
+        reunion.agregarInvitado(new Invitacion(reunion,this));
     }
 
     /**

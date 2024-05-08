@@ -31,10 +31,9 @@ public class Empleado implements Invitable{
     /**
      * Funcion que invita al empleado.
      * @param reunion Reunion a la que se invita al 'Empleado'
-     * @return Invitacion del 'Empleado'
      */
-    public Invitacion invitar(Reunion reunion){
-        return new Invitacion(reunion,this);
+    public void invitar(Reunion reunion){
+        reunion.agregarInvitado(new Invitacion(reunion,this));
     }
 
     /**

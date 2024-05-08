@@ -10,5 +10,5 @@ public interface Invitable {
     /**
      * Funcion que permite invitar a la clase que la implemente
      */
-    public Invitacion invitar(Reunion reunion);
+    public void invitar(Reunion reunion);
 }
