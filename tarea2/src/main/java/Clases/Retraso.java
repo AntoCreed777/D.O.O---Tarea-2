@@ -5,27 +5,19 @@ import java.time.Instant;
 /**
  * Clase que representa un retraso de un empleado en una asistencia.
  * @autor Valeria Quiroga
- * @autor Amtonio Benavides
+ * @autor Antonio Benavides
  */
 public class Retraso extends Asistencia {
-    private Instant hora;
+    private final Instant hora;
 
     /**
-     * Constructor de la clase Retraso.
-     * @param empleado
-     * @param hora
+     * Constructor que inicializa los atributos de la clase
+     * @param empleado El 'Empleado' que llego tarded a la 'Reunion'
+     * @param hora  La hora a la que llego el 'Empleado'
      */
 
     public Retraso(Empleado empleado, Instant hora) {
         super(empleado);
-        this.hora = hora;
-    }
-    
-    /**
-     * Funcion que establece la hora del retraso.
-     * @param hora
-     */
-    public void setHora(Instant hora) {
         this.hora = hora;
     }
 
@@ -35,5 +27,14 @@ public class Retraso extends Asistencia {
      */
     public Instant getHora() {
         return hora;
+    }
+
+    /**
+     * Funcion que devuelve una descripcion de la clase
+     * @return Descripcion de la clase
+     */
+    @Override
+    public String toString() {
+        return "'Retraso' representa al retraso de un asistente a una reunion";
     }
 }

@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Clase que representa una reunion de una empresa.
+ * Clase que genera un Informe de una 'Reunion'.
  * @autor Valeria Quiroga
  */
 
@@ -27,7 +27,10 @@ public class Informe {
     private List<Nota> notas;
     private List<Asistencia> asistentes;
 
-
+    /**
+     * Funcion que inicializa los atributos de la clase con los detalles de la reunion que fue pasada como argumento.
+     * @param reunion Reunion de la cual se quiere generar el informe.
+     */
     public Informe(Reunion reunion){
         // guardar los detalles de la reunion en variables
         this.fecha = reunion.getFecha();
@@ -49,13 +52,10 @@ public class Informe {
         }        
     }
 
-
-    
     /**
-     * Funcion que genera un archivo de texto con los detalles de la reunion que fue pasada como argumento.
-     * @param Reunion Reunion de la cual se quiere generar el informe.
+     * Funcion que escribe el informe en un archivo .txt
+     * @param nombre Nombre de la ruta del archivo en que se quiere escribir el informe
      */
-
     public void exportarInformeTXT(String nombre){
         
         try {
@@ -99,6 +99,15 @@ public class Informe {
             e.printStackTrace();
         }
         
-    };
+    }
+
+    /**
+     * Funcion que devuelve una descripcion de la clase
+     * @return Descripcion de la clase
+     */
+    @Override
+    public String toString() {
+        return "'Informe' representa a un Empleado de un 'Departamento' una Empresa ";
+    }
 }
 

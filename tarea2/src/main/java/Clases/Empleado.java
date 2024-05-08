@@ -3,17 +3,17 @@ package Clases;
 /**
  * Clase que representa un empleado de una empresa.
  * @author Valeria Quiroga
- * @author Amtonio Benavides
+ * @author Antonio Benavides
  */
 public class Empleado implements Invitable{
 
-    private String id;
-    private String apellidos;
-    private String nombre;
-    private String correo;
+    private final String id;
+    private final String apellidos;
+    private final String nombre;
+    private final String correo;
 
     /**
-     * Constructor que establece el id, apellidos, nombre y correo del empleado.
+     * Constructor que inicializa los atributos de la clase.
      * @param id Id del empleado.
      * @param apellidos Apellidos del empleado.
      * @param nombre Nombre del empleado.
@@ -61,6 +61,15 @@ public class Empleado implements Invitable{
      */
     public String getCorreo(){
         return correo;
+    }
+
+    /**
+     * Funcion que devuelve una descripcion de la clase
+     * @return Descripcion de la clase
+     */
+    @Override
+    public String toString() {
+        return "'Empleado' representa a un Empleado de un 'Departamento' una Empresa ";
     }
 
 }

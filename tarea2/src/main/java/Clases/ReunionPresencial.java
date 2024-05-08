@@ -8,20 +8,19 @@ import java.util.List;
 /**
  * Clase que representa una reunion presencial de una empresa.
  * @autor Valeria Quiroga
- * @autor Amtonio Benavides
+ * @autor Antonio Benavides
  */
 public class ReunionPresencial extends Reunion{
     
-    private String sala;
+    private final String sala;
     
     /**
-     * Constructor de la clase ReunionPresencial.
+     * Constructor en que se inicializan los atributos de la clase.
      * @param organizador Empleado organizador de la reunion.
      * @param tipo Tipo de reunion.
      * @param fecha Fecha de la reunion.
      * @param horaPrevista Hora prevista de la reunion.
      * @param duracionPrevista Duracion prevista de la reunion.
-     * @param nota Nota de la reunion.
      * @param invitacion Lista de invitaciones de la reunion.
      * @param sala Sala de la reunion.
      */
@@ -31,8 +30,20 @@ public class ReunionPresencial extends Reunion{
     }
 
 
-    // getter para 
+    /**
+     * Funcion que retorna la sala en que se realiza la reunion
+     * @return  Sala en que se realiza la reunion
+     */
     public String getSala(){
         return sala;
+    }
+
+    /**
+     * Funcion que devuelve una descripcion de la clase
+     * @return Descripcion de la clase
+     */
+    @Override
+    public String toString() {
+        return super.toString() + "en una sala";
     }
 }
