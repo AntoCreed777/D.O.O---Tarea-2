@@ -21,7 +21,7 @@ abstract public class Reunion{
     private List<Invitacion> invitaciones;
     private List<Asistencia> asistencias;
     private List<Nota> notas = null;
-    private Empleado organizador;
+    private final Empleado organizador;
     private final tipoReunion tipo;
 
 

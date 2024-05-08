@@ -9,14 +9,17 @@ import java.time.Instant;
 public class Invitacion {
     private final Instant hora;
     private final Invitable invitado;
+    private final Reunion reunion;
 
     /**
-     * Constructor que inicializa los atributos: a quien se invita y a que hora
+     * Constructor que inicializa los atributos: a que reunion, a quien se invita y a que hora
+     * @param reunion 'Reunion' a la que se invita
      * @param invitado  'Departamento' o 'Empleado' que se invita
      */
-    public Invitacion(Invitable invitado){
+    public Invitacion(Reunion reunion, Invitable invitado){
+        this.reunion = reunion;
         this.invitado = invitado;
-        this.hora = Instant.now();
+        this.hora = reunion.getHoraPrevista();
     }
 
     /**
@@ -33,6 +36,14 @@ public class Invitacion {
      */
     public Instant getHora(){
         return hora;
+    }
+
+    /**
+     * Funcion que retorna la reunion a la que se invito
+     * @return Reunion a la que se invito
+     */
+    public Reunion getReunion(){
+        return reunion;
     }
 
     /**
