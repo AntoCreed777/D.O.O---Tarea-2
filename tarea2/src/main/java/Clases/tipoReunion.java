@@ -5,10 +5,19 @@ package Clases;
  * @author Valeria Quiroga
  */
 public enum tipoReunion {
-    TECNICA,
-    MARKETING,
-    OTRO;
+    TECNICA("TECNICA"),
+    MARKETING("MARKETING"),
+    OTRO("OTRO");
 
+    public final String tipo;
+
+    /**
+     * Funcion que inicializa el enum
+     * @param tipo dato
+     */
+    tipoReunion(String tipo) {
+        this.tipo = tipo;
+    }
     /**
      * Funcion que devuelve una descripcion de la Enumeracion
      * @return Descripcion de la Enumeracion

@@ -62,7 +62,7 @@ public class Informe {
 
             // escribir detalles de la reunion
             BufferedWriter writer = new BufferedWriter(new FileWriter(nombre));
-            writer.write("Reunion tipo " + tipo);
+            writer.write("Reunion tipo " + tipo.tipo);
             writer.write("\n\nFecha: " + fecha);
             writer.write("\nHora prevista: " + horaPrevista);
             writer.write("\nHora de inicio: " + horarioInicio);
