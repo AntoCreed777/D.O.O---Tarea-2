@@ -5,6 +5,7 @@ import java.time.Instant;
 /**
  * Interface para indicar que una clase se puede invitar
  * @author Valeria Quiroga
+ * @author Antonio Benavides
  */
 public interface Invitable {
     /**

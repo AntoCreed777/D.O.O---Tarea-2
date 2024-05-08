@@ -29,6 +29,6 @@ public class Asistencia {
      */
     @Override
     public String toString() {
-        return "'Asistencia' representa la asistencia de un Empleado a una reunion";
+        return "Representa la asistencia de un Empleado a una reunion";
     }
 }

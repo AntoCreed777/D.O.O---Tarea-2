@@ -35,6 +35,6 @@ public class Retraso extends Asistencia {
      */
     @Override
     public String toString() {
-        return "'Retraso' representa al retraso de un asistente a una reunion";
+        return super.toString() + "si es que llego atrasado";
     }
 }
