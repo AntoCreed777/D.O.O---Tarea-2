@@ -49,6 +49,11 @@ public class main {
         reunion.iniciar(asistentes);
         try {
             Thread.sleep(2000);
+            Empleado ksm = new Empleado("3", "san martin" , "kote", "kote@example.com");
+            reunion.agregarRetrasado(ksm);
+
+            Thread.sleep(2000);
+
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

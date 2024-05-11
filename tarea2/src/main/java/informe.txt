@@ -1,13 +1,13 @@
-Reunion tipo MARKETING
+Reunion tipo 'Enumeracion' representa a todas las tipos de reuniones que se pueden realizar
 
-Fecha: Tue May 07 17:47:15 CLT 2024
-Hora prevista: 2024-05-07T21:47:15.830933Z
-Hora de inicio: 2024-05-07T21:47:15.832580300Z, Hora de fin: 2024-05-07T21:47:17.847992600Z
-Duracion total: 2.0 minutos.
+Fecha: Sat May 11 09:41:32 CLT 2024
+Hora prevista: 2024-05-11T13:41:32.293201100Z
+Hora de inicio: 2024-05-11T13:41:32.301886300Z, Hora de fin: 2024-05-11T13:41:36.317853400Z
+Duracion total: 4.0 segundos.
 
 Sala: Sala Informática TM
 Asistentes: 
-    valeria quiroga, 
+    valeria quiroga, kote san martin, 
 
 
 Notas: 

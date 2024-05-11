@@ -65,9 +65,21 @@ abstract public class Reunion{
     //#region CALCULOS Y SETTERS
 
      /**
+     * Funcion que agrega un retraso de un empleado a la reunion en un instante de tiempo.
+     * @param Empleado empleado que llego tarde a la reunion.
+     */
+    
+     public void agregarRetrasado(Empleado empleado){
+
+        Asistencia retraso = new Retraso(empleado, Instant.now());
+        asistencias.add(retraso);
+    }
+
+     /**
      * Funcion que retorna la lista de las asistencias de la reunion.
      * @return Lista de asistencias de la reunion.
      */
+    
     public List<Asistencia> obtenerAsistencias(){
         return asistencias;
     }
