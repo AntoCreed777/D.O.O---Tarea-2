@@ -28,12 +28,15 @@ public class main {
         
         Empleado vq = new Empleado("1", "quiroga" , "valeria", "vquiroga");
         Empleado ab = new Empleado("2", "benavides" , "antonio", "abenavides");
+        Empleado ksm = new Empleado("3", "san martin" , "kote", "kote@example.com");
         Invitacion i1 = new Invitacion(vq);
         Invitacion i2 = new Invitacion(ab);
+        Invitacion i3 = new Invitacion(ksm);
         
         List<Invitacion> invitados = new ArrayList<Invitacion>();
         invitados.add(i1);
         invitados.add(i2);
+        invitados.add(i3);
            
     
         Reunion reunion = new ReunionPresencial(vq, tipoReunion.MARKETING, fecha,horaPrevista, duracionPrevista, invitados, "Sala Informática TM" );
@@ -49,7 +52,7 @@ public class main {
         reunion.iniciar(asistentes);
         try {
             Thread.sleep(2000);
-            Empleado ksm = new Empleado("3", "san martin" , "kote", "kote@example.com");
+            
             reunion.agregarRetrasado(ksm);
 
             Thread.sleep(2000);

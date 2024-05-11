@@ -26,6 +26,7 @@ public class Informe {
     private String sala = null;
     private List<Nota> notas;
     private List<Asistencia> asistentes;
+    private List<Empleado> ausentes;
 
     /**
      * Funcion que inicializa los atributos de la clase con los detalles de la reunion que fue pasada como argumento.
@@ -40,6 +41,7 @@ public class Informe {
         this.horarioFin = reunion.getHorarioFin();
         this.notas = reunion.getNotas();
         this.asistentes = reunion.obtenerAsistencias();
+        this.ausentes = reunion.obtenerAusencias();
         this.tipo = reunion.getTipo();
         
 
@@ -76,7 +78,26 @@ public class Informe {
             // escribir empleados asistentes.
             writer.write("\nAsistentes: \n    ");
             for(Asistencia a: asistentes){
-                String empleado = a.getEmpleado().getNombre() + " " + a.getEmpleado().getApellidos();
+                String empleado = a.getEmpleado().getNombre() + " " + a.getEmpleado().getApellidos() + "<" + a.getEmpleado().getCorreo() + ">";
+                writer.write(empleado + ", ");
+            }
+            writer.write("\n\n");
+
+            // escirbir los retrasados con su hora de llegada
+            writer.write("\nAtrasos: \n");
+            for(Asistencia a: asistentes){
+
+                if(a instanceof Retraso){
+                    String empleado = a.getEmpleado().getNombre() + " " + a.getEmpleado().getApellidos() + "<" + a.getEmpleado().getCorreo() + ">";
+                    writer.write("    " + empleado + " llego a las " + ((Retraso) a).getHora() + ",\n ");
+                }
+            }
+            writer.write("\n\n");
+
+            // escribir empleados ausentes.
+            writer.write("\nAusentes: \n    ");
+            for(Empleado e : ausentes){
+                String empleado = e.getNombre() + " " + e.getApellidos() + "<" + e.getCorreo() + ">";
                 writer.write(empleado + ", ");
             }
             writer.write("\n\n");
