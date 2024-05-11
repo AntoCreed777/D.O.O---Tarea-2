@@ -3,7 +3,6 @@ package Clases;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -76,7 +75,7 @@ public class Informe {
             else if(sala != null){ writer.write("\n\nSala: " + sala);}
 
             // escribir empleados asistentes.
-            writer.write("\nAsistentes: \n    ");
+            writer.write("\n\nAsistentes: \n    ");
             for(Asistencia a: asistentes){
                 String empleado = a.getEmpleado().getNombre() + " " + a.getEmpleado().getApellidos() + "<" + a.getEmpleado().getCorreo() + ">";
                 writer.write(empleado + ", ");

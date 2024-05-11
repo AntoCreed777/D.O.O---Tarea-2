@@ -1,13 +1,23 @@
-Reunion tipo MARKETING
+Reunion tipo 'Enumeracion' representa a todas las tipos de reuniones que se pueden realizar
 
-Fecha: Tue May 07 20:22:06 CLT 2024
-Hora prevista: 2024-05-08T00:22:06.766182Z
-Hora de inicio: 2024-05-08T00:22:06.853526200Z, Hora de fin: 2024-05-08T00:22:08.865860600Z
-Duracion total: 2.0 segundos.
+Fecha: Sat May 11 10:47:16 CLT 2024
+Hora prevista: 2024-05-11T14:47:16.006507Z
+Hora de inicio: 2024-05-11T14:47:16.010872200Z, Hora de fin: 2024-05-11T14:47:20.024309600Z
+Duracion total: 4.0 segundos.
 
-Sala: Sala InformÃ¡tica TM
+Sala: Sala Informática TM
+
 Asistentes: 
-    valeria quiroga, 
+    valeria quiroga<vquiroga>, kote san martin<kote@example.com>, 
+
+
+Atrasos: 
+    kote san martin<kote@example.com> llego a las 2024-05-11T14:47:18.017379700Z,
+ 
+
+
+Ausentes: 
+    antonio benavides<abenavides>, 
 
 
 Notas: 
@@ -16,5 +26,5 @@ Nota 1:
 Winston Smith is a member of the Outer Party. He works in the Records Department in the Ministry of Truth, rewriting and distorting history.
 
 Nota 2:
-To escape Big Brother's tyranny, at least inside his own mind, Winston begins a diary â€” an act punishable by death.
+To escape Big Brother's tyranny, at least inside his own mind, Winston begins a diary — an act punishable by death.
 

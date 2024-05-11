@@ -103,8 +103,17 @@ abstract public class Reunion{
             }
         }
 
+
+        List<Empleado> auxAsistencias = new ArrayList<Empleado>(); //Lista de asistentes a la reunion
+
+        for(Asistencia a : asistencias){                         //Se recorren las asistencias
+            auxAsistencias.add(a.getEmpleado());                //Se agregan los empleados a la lista de auxiliar de empleados asistentes
+        }
+
         for(Empleado empleado : auxinvitacion){                 //Se recorren los invitados
-            if(!asistencias.contains((Object)empleado)){        //Si el empleado no esta en la lista de asistencias
+
+            if(!auxAsistencias.contains((Empleado)empleado)){        //Si el empleado no esta en la lista de asistencias
+
                 ausencias.add(empleado);                        //Se agrega a la lista de ausentes
             }
         }
@@ -114,7 +123,7 @@ abstract public class Reunion{
     /**
      * Funcion que retorna la lista de los retrasos de la reunion.
      * @return Lista de retrasos de la reunion.
-     */
+     */ 
     public List<Asistencia> obtenerRetrasos(){
         List<Asistencia> retrasos = new ArrayList<Asistencia>();
         for(Asistencia asistencia : asistencias){
