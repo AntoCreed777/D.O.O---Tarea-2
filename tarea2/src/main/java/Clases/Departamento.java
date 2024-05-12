@@ -1,5 +1,6 @@
 package Clases;
 
+import java.time.Instant;
 import java.util.List;
 
 /**
@@ -53,12 +54,11 @@ public class Departamento implements Invitable{
     }
 
     /**
-     * Funcion que invita a todos los empleados del departamento.
+     * Funcion que invita al Departamento.
+     * @param reunion Reunion a la que se invita al 'Departamento'
      */
-    public void invitar(){
-        for(Empleado empleado : empleados){
-            empleado.invitar();
-        }
+    public void invitar(Reunion reunion){
+        reunion.agregarInvitado(new Invitacion(reunion,this));
     }
 
     /**

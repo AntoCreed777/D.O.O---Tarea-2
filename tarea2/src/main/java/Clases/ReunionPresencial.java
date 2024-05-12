@@ -7,8 +7,8 @@ import java.util.List;
 
 /**
  * Clase que representa una reunion presencial de una empresa.
- * @autor Valeria Quiroga
- * @autor Antonio Benavides
+ * @author Valeria Quiroga
+ * @author Antonio Benavides
  */
 public class ReunionPresencial extends Reunion{
     
@@ -21,11 +21,10 @@ public class ReunionPresencial extends Reunion{
      * @param fecha Fecha de la reunion.
      * @param horaPrevista Hora prevista de la reunion.
      * @param duracionPrevista Duracion prevista de la reunion.
-     * @param invitacion Lista de invitaciones de la reunion.
      * @param sala Sala de la reunion.
      */
-    public ReunionPresencial(Empleado organizador,tipoReunion tipo,Date fecha, Instant horaPrevista, Duration duracionPrevista, List<Invitacion> invitacion, String sala){
-        super(organizador, tipo, fecha, horaPrevista, duracionPrevista, invitacion);
+    public ReunionPresencial(Empleado organizador,tipoReunion tipo,Date fecha, Instant horaPrevista, Duration duracionPrevista, String sala){
+        super(organizador, tipo, fecha, horaPrevista, duracionPrevista);
         this.sala = sala;
     }
 

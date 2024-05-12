@@ -26,6 +26,8 @@ public class main {
         
         
         Empleado vq = new Empleado("1", "quiroga" , "valeria", "vquiroga");
+        Reunion reunion = new ReunionPresencial(vq, tipoReunion.MARKETING, fecha,horaPrevista, duracionPrevista, "Sala Informática TM" );
+        
         Empleado ab = new Empleado("2", "benavides" , "antonio", "abenavides");
         Empleado ksm = new Empleado("3", "san martin" , "kote", "kote@example.com");
         Invitacion i1 = new Invitacion(vq);
@@ -46,7 +48,6 @@ public class main {
         Asistencia a1 = new Asistencia(vq);
         List<Asistencia> asistentes = new ArrayList<Asistencia>();
         asistentes.add(a1);
-
         
         reunion.iniciar(asistentes);
         try {
@@ -62,7 +63,11 @@ public class main {
         }
         reunion.finalizar();
 
+        for(Empleado ausente: reunion.obtenerAusencias()){
+            System.out.println(ausente.getNombre());
+        }
+
         Informe informe = new Informe(reunion);
         informe.exportarInformeTXT("informe.txt");
-    }   
+    }
 }

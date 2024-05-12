@@ -4,8 +4,8 @@ import java.time.Instant;
 
 /**
  * Clase que representa un retraso de un empleado en una asistencia.
- * @autor Valeria Quiroga
- * @autor Antonio Benavides
+ * @author  Valeria Quiroga
+ * @author Antonio Benavides
  */
 public class Retraso extends Asistencia {
     private final Instant hora;
@@ -35,6 +35,6 @@ public class Retraso extends Asistencia {
      */
     @Override
     public String toString() {
-        return "'Retraso' representa al retraso de un asistente a una reunion";
+        return super.toString() + "si es que llego atrasado";
     }
 }

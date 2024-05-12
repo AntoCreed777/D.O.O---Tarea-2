@@ -1,5 +1,7 @@
 package Clases;
 
+import java.time.Instant;
+
 /**
  * Clase que representa un empleado de una empresa.
  * @author Valeria Quiroga
@@ -28,8 +30,11 @@ public class Empleado implements Invitable{
 
     /**
      * Funcion que invita al empleado.
+     * @param reunion Reunion a la que se invita al 'Empleado'
      */
-    public void invitar(){};  //!!!!FALTA IMPLEMENTAR!!!!//
+    public void invitar(Reunion reunion){
+        reunion.agregarInvitado(new Invitacion(reunion,this));
+    }
 
     /**
      * Funcion que retorna el id del empleado.

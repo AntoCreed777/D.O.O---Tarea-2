@@ -8,8 +8,8 @@ import java.util.List;
 
 /**
  * Clase que representa una reunion de una empresa.
- * @autor Valeria Quiroga
- * @autor Antonio Benavides
+ * @author Valeria Quiroga
+ * @author Antonio Benavides
  */
 abstract public class Reunion{
 
@@ -21,7 +21,7 @@ abstract public class Reunion{
     private List<Invitacion> invitaciones;
     private List<Asistencia> asistencias;
     private List<Nota> notas = null;
-    private Empleado organizador;
+    private final Empleado organizador;
     private final tipoReunion tipo;
 
 
@@ -32,19 +32,23 @@ abstract public class Reunion{
      * @param fecha Fecha de la reunion.
      * @param horaPrevista Hora prevista de la reunion.
      * @param duracionPrevista Duracion prevista de la reunion.
-     * @param invitacion Lista de invitaciones a la reunion.
      */
-    public Reunion(Empleado organizador,tipoReunion tipo,Date fecha, Instant horaPrevista, Duration duracionPrevista, List<Invitacion> invitacion){
+    public Reunion(Empleado organizador,tipoReunion tipo,Date fecha, Instant horaPrevista, Duration duracionPrevista){
         this.organizador = organizador;
         this.fecha = fecha;
         this.horaPrevista = horaPrevista;
         this.duracionPrevista = duracionPrevista;
-        this.invitaciones = invitacion;
         this.tipo = tipo;
 
+        this.invitaciones = new ArrayList<Invitacion>(); //Crear lista para luego guardar las invitaciones.
         this.notas = new ArrayList<Nota>(); // Crear lista para luego guardar las notas.
     }
 
+    /**
+     * Funcion que agrega un invitado a la Reunion
+     * @param invitacion La Invitacion de Un 'Departamento' o 'Empleado'
+     */
+    public void agregarInvitado(Invitacion invitacion){invitaciones.add(invitacion);}
 
     /**
      * Funcion que inicia la reunion marcando la hora de inicio y la lista de asistencias.
@@ -90,13 +94,11 @@ abstract public class Reunion{
      */
     public List<Empleado> obtenerAusencias(){
         List<Empleado> ausencias = new ArrayList<Empleado>();       //Lista de ausentes a la reunion
-        List<Empleado> auxinvitacion = new ArrayList<Empleado>();   //Lista de invitados a la reunion (Solo Empleados, ninguna Departamento)
+        List<Empleado> auxinvitacion = new ArrayList<Empleado>();   //Lista de invitados a la reunion (Solo Empleados, ningun Departamento)
 
         for(Invitacion invitacion : invitaciones){                  //Se recorren las invitaciones
             if(invitacion.getInvitado() instanceof Departamento){   //Si el invitado es un Departamento
-                for(Empleado empleado : ((Departamento)invitacion.getInvitado()).getEmpleados()){   //Se recorren los empleados del departamento
-                    auxinvitacion.add(empleado);                    //Se agregan a la lista de invitados
-                }
+                auxinvitacion.addAll(((Departamento) invitacion.getInvitado()).getEmpleados()); //Agrego a todos los Empleados del Departamento a la lista de invitados
             }
             else{
                 auxinvitacion.add((Empleado)invitacion.getInvitado());  //Si el invitado es un Empleado, se agrega a la lista de invitados
