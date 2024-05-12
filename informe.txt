@@ -1,30 +1,36 @@
 Reunion tipo MARKETING
 
-Fecha: Sun May 12 14:24:40 CLT 2024
-Hora prevista: 2024-05-12T18:24:40.129795900Z
-Hora de inicio: 2024-05-12T18:24:40.134318600Z, Hora de fin: 2024-05-12T18:24:44.153435300Z
+Fecha: Sun May 12 14:51:03 CLT 2024
+Hora prevista: 2024-05-12T18:51:03.334461700Z
+Hora de inicio: 2024-05-12T18:51:03.340683700Z, Hora de fin: 2024-05-12T18:51:07.355556600Z
 Duracion total: 4.0 segundos.
+
+Cantidad asistentes: 2
+Porcentaje asistentes: 66.66667%
 
 Sala: Sala Informática TM
 
-Asistentes: 
-    valeria quiroga<vquiroga>, kote san martin<kote@example.com>, 
+Asistentes:
+	-valeria quiroga<vquiroga>
+	-kote san martin<kote@example.com>
 
 
-Atrasos: 
-    kote san martin<kote@example.com> llego a las 2024-05-12T18:24:42.147996400Z,
- 
+
+Atrasos:
+	-kote san martin<kote@example.com> llego a las 2024-05-12T18:51:05.350231Z
 
 
-Ausentes: 
-    antonio benavides<abenavides>, 
+
+Ausentes:
+	-antonio benavides<abenavides>
 
 
-Notas: 
+
+Notas:
 
 Nota 1:
-Winston Smith is a member of the Outer Party. He works in the Records Department in the Ministry of Truth, rewriting and distorting history.
+	-Winston Smith is a member of the Outer Party. He works in the Records Department in the Ministry of Truth, rewriting and distorting history.
 
 Nota 2:
-To escape Big Brother's tyranny, at least inside his own mind, Winston begins a diary — an act punishable by death.
+	-To escape Big Brother's tyranny, at least inside his own mind, Winston begins a diary — an act punishable by death.
 

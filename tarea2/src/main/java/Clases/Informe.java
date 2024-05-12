@@ -27,6 +27,9 @@ public class Informe {
     private List<Asistencia> asistentes;
     private List<Empleado> ausentes;
 
+    private int cantidadAsistentes;
+    private float porcentajeAsistentes;
+
     /**
      * Funcion que inicializa los atributos de la clase con los detalles de la reunion que fue pasada como argumento.
      * @param reunion Reunion de la cual se quiere generar el informe.
@@ -42,6 +45,8 @@ public class Informe {
         this.asistentes = reunion.obtenerAsistencias();
         this.ausentes = reunion.obtenerAusencias();
         this.tipo = reunion.getTipo();
+        this.cantidadAsistentes = reunion.obtenerTotalAsistencia();
+        this.porcentajeAsistentes = reunion.obtenerPorcentajeAsistencia();
         
 
         //dependiendo de si la reunion es virtual o presencial se usa la variable enlace o sala 
@@ -69,47 +74,49 @@ public class Informe {
             writer.write("\nHora de inicio: " + horarioInicio);
             writer.write(", Hora de fin: " + horarioFin);
             writer.write("\nDuracion total: " + duracionTotal + " segundos.");
+            writer.write("\n\nCantidad asistentes: " + cantidadAsistentes);
+            writer.write("\nPorcentaje asistentes: " + porcentajeAsistentes + "%");
 
             // imprimir el enlace o sala dependiendo del tipo de reunion
             if(enlace != null){ writer.write("\n\nEnlace: " + enlace);}
             else if(sala != null){ writer.write("\n\nSala: " + sala);}
 
             // escribir empleados asistentes.
-            writer.write("\n\nAsistentes: \n    ");
+            writer.write("\n\nAsistentes:\n");
             for(Asistencia a: asistentes){
                 String empleado = a.getEmpleado().getNombre() + " " + a.getEmpleado().getApellidos() + "<" + a.getEmpleado().getCorreo() + ">";
-                writer.write(empleado + ", ");
+                writer.write("\t-" + empleado + "\n");
             }
             writer.write("\n\n");
 
             // escirbir los retrasados con su hora de llegada
-            writer.write("\nAtrasos: \n");
+            writer.write("\nAtrasos:\n");
             for(Asistencia a: asistentes){
 
                 if(a instanceof Retraso){
                     String empleado = a.getEmpleado().getNombre() + " " + a.getEmpleado().getApellidos() + "<" + a.getEmpleado().getCorreo() + ">";
-                    writer.write("    " + empleado + " llego a las " + ((Retraso) a).getHora() + ",\n ");
+                    writer.write("\t-" + empleado + " llego a las " + ((Retraso) a).getHora() + "\n");
                 }
             }
             writer.write("\n\n");
 
             // escribir empleados ausentes.
-            writer.write("\nAusentes: \n    ");
+            writer.write("\nAusentes:\n");
             for(Empleado e : ausentes){
                 String empleado = e.getNombre() + " " + e.getApellidos() + "<" + e.getCorreo() + ">";
-                writer.write(empleado + ", ");
+                writer.write("\t-" + empleado + "\n");
             }
             writer.write("\n\n");
 
 
             //Escirbir las notas tomadas.
-            writer.write("\nNotas: \n\n");
+            writer.write("\nNotas:\n\n");
 
             int i = 1;
             for(Nota n: notas){
 
                 writer.write("Nota " + i + ":\n");
-                writer.write(n.getContenido() + "\n\n");
+                writer.write("\t-" + n.getContenido() + "\n\n");
                 i++;
             }
            

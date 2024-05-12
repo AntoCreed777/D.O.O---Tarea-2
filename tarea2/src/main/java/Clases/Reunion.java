@@ -149,7 +149,7 @@ abstract public class Reunion{
      * @return Porcentaje de asistencia de la reunion.
      */
     public float obtenerPorcentajeAsistencia(){
-        return (obtenerTotalAsistencia()/(obtenerTotalAsistencia() + obtenerAusencias().size()))*100;
+        return ((float)obtenerTotalAsistencia()/(obtenerTotalAsistencia() + obtenerAusencias().size()))*100;
     }
 
     
