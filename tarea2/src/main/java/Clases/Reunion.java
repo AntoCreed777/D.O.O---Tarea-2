@@ -69,9 +69,21 @@ abstract public class Reunion{
     //#region CALCULOS Y SETTERS
 
      /**
+     * Funcion que agrega un retraso de un empleado a la reunion en un instante de tiempo.
+     * @param Empleado empleado que llego tarde a la reunion.
+     */
+    
+     public void agregarRetrasado(Empleado empleado){
+
+        Asistencia retraso = new Retraso(empleado, Instant.now());
+        asistencias.add(retraso);
+    }
+
+     /**
      * Funcion que retorna la lista de las asistencias de la reunion.
      * @return Lista de asistencias de la reunion.
      */
+    
     public List<Asistencia> obtenerAsistencias(){
         return asistencias;
     }
@@ -93,12 +105,18 @@ abstract public class Reunion{
             }
         }
 
+
+        List<Empleado> auxAsistencias = new ArrayList<Empleado>(); //Lista de asistentes a la reunion
+
+        for(Asistencia a : asistencias){                         //Se recorren las asistencias
+            auxAsistencias.add(a.getEmpleado());                //Se agregan los empleados a la lista de auxiliar de empleados asistentes
+        }
+
         for(Empleado empleado : auxinvitacion){                 //Se recorren los invitados
-            ausencias.add(empleado);                        //Se agrega a la lista de ausentes
-            for(Asistencia asistente : asistencias){
-                if(asistente.getEmpleado().equals(empleado)){
-                    ausencias.remove(empleado);         //Si esta presente se elimina de la lista de ausentes
-                }
+
+            if(!auxAsistencias.contains((Empleado)empleado)){        //Si el empleado no esta en la lista de asistencias
+
+                ausencias.add(empleado);                        //Se agrega a la lista de ausentes
             }
         }
         return ausencias;                                    //Se retorna la lista de ausentes
@@ -107,7 +125,7 @@ abstract public class Reunion{
     /**
      * Funcion que retorna la lista de los retrasos de la reunion.
      * @return Lista de retrasos de la reunion.
-     */
+     */ 
     public List<Asistencia> obtenerRetrasos(){
         List<Asistencia> retrasos = new ArrayList<Asistencia>();
         for(Asistencia asistencia : asistencias){
