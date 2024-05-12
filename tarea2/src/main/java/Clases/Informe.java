@@ -35,7 +35,7 @@ public class Informe {
         // guardar los detalles de la reunion en variables
         this.fecha = reunion.getFecha();
         this.duracionTotal = reunion.calcularTiempoReal();
-        this.horaPrevista = reunion.getHora();
+        this.horaPrevista = reunion.getHoraPrevista();
         this.horarioInicio = reunion.getHorarioInicio();
         this.horarioFin = reunion.getHorarioFin();
         this.notas = reunion.getNotas();

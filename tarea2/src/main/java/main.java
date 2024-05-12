@@ -33,14 +33,9 @@ public class main {
         Empleado ab = new Empleado("2", "benavides" , "antonio", "abenavides");
         Empleado ksm = new Empleado("3", "san martin" , "kote", "kote@example.com");
 
-        Invitacion i1 = new Invitacion(reunion, vq);
-        Invitacion i2 = new Invitacion(reunion,ab);
-        Invitacion i3 = new Invitacion(reunion, ksm);
-        
-        List<Invitacion> invitados = new ArrayList<Invitacion>();
-        invitados.add(i1);
-        invitados.add(i2);
-        invitados.add(i3);
+        vq.invitar(reunion);
+        ab.invitar(reunion);
+        ksm.invitar(reunion);
          
         reunion.agregarNota(n1);
         reunion.agregarNota(n2);

@@ -5,7 +5,7 @@ package Clases;
  * @author Antonio Benavides
  */
 public class Asistencia {
-    private Empleado empleado;
+    private final Empleado empleado;
 
     /**
      * Constructor que inicializa al Empleado que asiste a la reunion

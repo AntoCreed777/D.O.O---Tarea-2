@@ -70,7 +70,7 @@ abstract public class Reunion{
 
      /**
      * Funcion que agrega un retraso de un empleado a la reunion en un instante de tiempo.
-     * @param Empleado empleado que llego tarde a la reunion.
+     * @param empleado 'Empleado' que llego tarde a la reunion.
      */
     
      public void agregarRetrasado(Empleado empleado){
@@ -202,14 +202,6 @@ abstract public class Reunion{
      */
     public Duration getDuracionPrevista(){
         return duracionPrevista;
-    }
-
-    /**
-     * Funcion que retorna el la hora prevista para la reunión.
-     * @return El instante de la hora prevista.
-     */
-    public Instant getHora(){
-        return horaPrevista;
     }
 
     /**
