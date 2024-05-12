@@ -1,8 +1,8 @@
 Reunion tipo 'Enumeracion' representa a todas las tipos de reuniones que se pueden realizar
 
-Fecha: Sat May 11 10:47:16 CLT 2024
-Hora prevista: 2024-05-11T14:47:16.006507Z
-Hora de inicio: 2024-05-11T14:47:16.010872200Z, Hora de fin: 2024-05-11T14:47:20.024309600Z
+Fecha: Sat May 11 22:45:54 CLT 2024
+Hora prevista: 2024-05-12T02:45:54.064166800Z
+Hora de inicio: 2024-05-12T02:45:54.067682900Z, Hora de fin: 2024-05-12T02:45:58.084475200Z
 Duracion total: 4.0 segundos.
 
 Sala: Sala Informática TM
@@ -12,7 +12,7 @@ Asistentes:
 
 
 Atrasos: 
-    kote san martin<kote@example.com> llego a las 2024-05-11T14:47:18.017379700Z,
+    kote san martin<kote@example.com> llego a las 2024-05-12T02:45:56.074647100Z,
  
 
 
@@ -23,7 +23,7 @@ Ausentes:
 Notas: 
 
 Nota 1:
-Winston Smith is a member of the Outer Party. He works in the Records Department in the Ministry of Truth, rewriting and distorting history.
+1) Winston Smith is a member of the Outer Party. He works in the Records Department in the Ministry of Truth, rewriting and distorting history.
 
 Nota 2:
 To escape Big Brother's tyranny, at least inside his own mind, Winston begins a diary — an act punishable by death.
