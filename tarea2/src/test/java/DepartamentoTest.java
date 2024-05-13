@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class DepartamentoTest {
 
@@ -31,7 +30,6 @@ class DepartamentoTest {
         Departamento departamento = new Departamento("IT");
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
         departamento.agregarEmpleado(empleado);
-        assertNotNull(departamento.getEmpleados());
         assertEquals(1, departamento.getEmpleados().size());
     }
 
@@ -49,7 +47,8 @@ class DepartamentoTest {
         Departamento departamento = new Departamento("IT");
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
         departamento.agregarEmpleado(empleado);
-        departamento.invitar();
+        Reunion reunion = new Reunion("Reunion de IT");
+        departamento.invitar(reunion);
         assertEquals(1, empleado.getInvitaciones().size());
     }
 
@@ -64,5 +63,11 @@ class DepartamentoTest {
         assertEquals(2, empleados.size());
         assertEquals(empleado1, empleados.get(0));
         assertEquals(empleado2, empleados.get(1));
+    }
+
+    @Test
+    void testToString() {
+        Departamento departamento = new Departamento("IT");
+        assertEquals("'Departamento' representa a un departamento de una Empresa ", departamento.toString());
     }
 }
