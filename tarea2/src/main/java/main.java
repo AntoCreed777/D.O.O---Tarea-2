@@ -1,6 +1,7 @@
 
 
 import Clases.*;
+import Clases.Invitacion;
 
 import java.util.Date;
 import java.time.Instant;
@@ -16,20 +17,26 @@ public class main {
         Instant horaPrevista = Instant.now();
         Duration duracionPrevista = Duration.ofHours(1);
 
-        Nota n1 = new Nota() ;
-        Nota n2 = new Nota() ;
-        n1.setContenido("Winston Smith is a member of the Outer Party. He works in the Records Department in the Ministry of Truth, rewriting and distorting history.");
-        n2.setContenido("To escape Big Brother's tyranny, at least inside his own mind, Winston begins a diary — an act punishable by death.");
+        Nota n1 = new Nota("Winston Smith is a member of the Outer Party. He works in the Records Department in the Ministry of Truth, rewriting and distorting history.") ;
+        Nota n2 = new Nota("To escape Big Brother's tyranny, at least inside his own mind, Winston begins a diary — an act punishable by death.") ;
+    
 
+        List<Nota> notas = new ArrayList<Nota>();
+        notas.add(n1);
+        notas.add(n2);
+        
+        
         Empleado vq = new Empleado("1", "quiroga" , "valeria", "vquiroga");
+        
         Reunion reunion = new ReunionPresencial(vq, tipoReunion.MARKETING, fecha,horaPrevista, duracionPrevista, "Sala Informática TM" );
         
         Empleado ab = new Empleado("2", "benavides" , "antonio", "abenavides");
+        Empleado ksm = new Empleado("3", "san martin" , "kote", "kote@example.com");
+
+        vq.invitar(reunion);
         ab.invitar(reunion);
-
-        Empleado mj = new Empleado("2", "jose" , "maria", "abcde");
-        mj.invitar(reunion);
-
+        ksm.invitar(reunion);
+         
         reunion.agregarNota(n1);
         reunion.agregarNota(n2);
         
@@ -40,6 +47,11 @@ public class main {
         reunion.iniciar(asistentes);
         try {
             Thread.sleep(2000);
+            
+            reunion.agregarRetrasado(ksm);
+
+            Thread.sleep(2000);
+
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

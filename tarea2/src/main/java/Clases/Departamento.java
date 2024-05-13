@@ -1,6 +1,7 @@
 package Clases;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,11 +15,12 @@ public class Departamento implements Invitable{
     private List<Empleado> empleados;
 
     /**
-     * Constructor que establece el nombre del Departamento.
+     * Constructor que establece el nombre del Departamento y crea la lista de empleados vacia.
      * @param nombre Nombre del departamento.
      */
     public Departamento(String nombre){
         this.nombre = nombre;
+        empleados = new ArrayList<Empleado>();
     }
 
     /**

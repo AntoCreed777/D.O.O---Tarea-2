@@ -3,7 +3,6 @@ package Clases;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +25,10 @@ public class Informe {
     private String sala = null;
     private List<Nota> notas;
     private List<Asistencia> asistentes;
+    private List<Empleado> ausentes;
+
+    private int cantidadAsistentes;
+    private float porcentajeAsistentes;
 
     /**
      * Funcion que inicializa los atributos de la clase con los detalles de la reunion que fue pasada como argumento.
@@ -35,12 +38,15 @@ public class Informe {
         // guardar los detalles de la reunion en variables
         this.fecha = reunion.getFecha();
         this.duracionTotal = reunion.calcularTiempoReal();
-        this.horaPrevista = reunion.getHora();
+        this.horaPrevista = reunion.getHoraPrevista();
         this.horarioInicio = reunion.getHorarioInicio();
         this.horarioFin = reunion.getHorarioFin();
         this.notas = reunion.getNotas();
         this.asistentes = reunion.obtenerAsistencias();
+        this.ausentes = reunion.obtenerAusencias();
         this.tipo = reunion.getTipo();
+        this.cantidadAsistentes = reunion.obtenerTotalAsistencia();
+        this.porcentajeAsistentes = reunion.obtenerPorcentajeAsistencia();
         
 
         //dependiendo de si la reunion es virtual o presencial se usa la variable enlace o sala 
@@ -68,28 +74,49 @@ public class Informe {
             writer.write("\nHora de inicio: " + horarioInicio);
             writer.write(", Hora de fin: " + horarioFin);
             writer.write("\nDuracion total: " + duracionTotal + " segundos.");
+            writer.write("\n\nCantidad asistentes: " + cantidadAsistentes);
+            writer.write("\nPorcentaje asistentes: " + porcentajeAsistentes + "%");
 
             // imprimir el enlace o sala dependiendo del tipo de reunion
             if(enlace != null){ writer.write("\n\nEnlace: " + enlace);}
             else if(sala != null){ writer.write("\n\nSala: " + sala);}
 
             // escribir empleados asistentes.
-            writer.write("\nAsistentes: \n    ");
+            writer.write("\n\nAsistentes:\n");
             for(Asistencia a: asistentes){
-                String empleado = a.getEmpleado().getNombre() + " " + a.getEmpleado().getApellidos();
-                writer.write(empleado + ", ");
+                String empleado = a.getEmpleado().getNombre() + " " + a.getEmpleado().getApellidos() + "<" + a.getEmpleado().getCorreo() + ">";
+                writer.write("\t-" + empleado + "\n");
+            }
+            writer.write("\n\n");
+
+            // escirbir los retrasados con su hora de llegada
+            writer.write("\nAtrasos:\n");
+            for(Asistencia a: asistentes){
+
+                if(a instanceof Retraso){
+                    String empleado = a.getEmpleado().getNombre() + " " + a.getEmpleado().getApellidos() + "<" + a.getEmpleado().getCorreo() + ">";
+                    writer.write("\t-" + empleado + " llego a las " + ((Retraso) a).getHora() + "\n");
+                }
+            }
+            writer.write("\n\n");
+
+            // escribir empleados ausentes.
+            writer.write("\nAusentes:\n");
+            for(Empleado e : ausentes){
+                String empleado = e.getNombre() + " " + e.getApellidos() + "<" + e.getCorreo() + ">";
+                writer.write("\t-" + empleado + "\n");
             }
             writer.write("\n\n");
 
 
             //Escirbir las notas tomadas.
-            writer.write("\nNotas: \n\n");
+            writer.write("\nNotas:\n\n");
 
             int i = 1;
             for(Nota n: notas){
 
                 writer.write("Nota " + i + ":\n");
-                writer.write(n.getContenido() + "\n\n");
+                writer.write("\t-" + n.getContenido() + "\n\n");
                 i++;
             }
            

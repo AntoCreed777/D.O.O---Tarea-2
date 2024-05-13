@@ -11,7 +11,9 @@ public class Nota {
     /**
      * Constructor de la clase Nota Vacio.
      */
-    public Nota(){}
+    public Nota(String contenido){
+        this.contenido = contenido;
+    }
 
     /**
      * Funcion que retorna el contenido de la nota.
@@ -19,14 +21,6 @@ public class Nota {
      */
     public String getContenido() {
         return contenido;
-    }
-
-    /**
-     * Funcion que establece el contenido de la nota.
-     * @param contenido Contenido de la nota.
-     */
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
     }
 
     /**
