@@ -35,7 +35,7 @@ class EmpleadoTest {
         assertEquals(1, invitaciones.size());
         Invitacion invitacion = invitaciones.get(0);
         assertEquals(reunion, invitacion.getReunion());
-        assertEquals(empleado, invitacion.getEmpleado());
+        assertEquals(empleado, invitacion.getInvitado());
 
         empleado.quitarInvitacion(invitacion);
         assertEquals(0, empleado.getInvitaciones().size());

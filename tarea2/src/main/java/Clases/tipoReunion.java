@@ -2,6 +2,7 @@ package Clases;
 
 /**
  * Enumerado que contiene los tipos de reuniones que se pueden realizar.
+ * 
  * @author Valeria Quiroga
  */
 public enum tipoReunion {
@@ -13,13 +14,16 @@ public enum tipoReunion {
 
     /**
      * Funcion que inicializa el enum
+     * 
      * @param tipo dato
      */
     tipoReunion(String tipo) {
         this.tipo = tipo;
     }
+
     /**
      * Funcion que devuelve una descripcion de la Enumeracion
+     * 
      * @return Descripcion de la Enumeracion
      */
     @Override

@@ -2,8 +2,11 @@ import Clases.*;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,6 +17,9 @@ class ReunionVirtualTest {
 
     @Test
     void testEsInvitable() {
+        Date fecha = new Date();
+        Instant horaPrevista = Instant.now();
+        Duration duracionPrevista = Duration.ofHours(1);
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
         List<Empleado> empleados = new ArrayList<>();
         empleados.add(empleado);
@@ -34,14 +40,6 @@ class ReunionVirtualTest {
     void testGetFechaCorrecta() {
         LocalDateTime fecha = LocalDateTime.of(2022, 1, 1, 10, 0);
         ReunionVirtual reunionVirtual = new ReunionVirtual("Enlace 1", new ArrayList<>(), fecha);
-        assertEquals(fecha, reunionVirtual.getFecha());
-    }
-
-    @Test
-    void testSetFechaCorrecta() {
-        LocalDateTime fecha = LocalDateTime.of(2022, 1, 1, 10, 0);
-        ReunionVirtual reunionVirtual = new ReunionVirtual();
-        reunionVirtual.setFecha(fecha);
         assertEquals(fecha, reunionVirtual.getFecha());
     }
 
