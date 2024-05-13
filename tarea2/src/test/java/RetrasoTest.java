@@ -1,7 +1,3 @@
-
-Editar
-Pantalla completa
-Copiar código
 package Clases;
 
 import org.junit.jupiter.api.Assertions;
