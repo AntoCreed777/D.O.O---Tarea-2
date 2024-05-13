@@ -1,3 +1,4 @@
+import Clases.*;
 import org.junit.Test;
 
 import Clases.Informe;
@@ -9,7 +10,7 @@ public class InformeTest {
 
     @Test
     public void testConstructor() {
-        Reunion reunion = new Reunion(); // create a sample Reunion object
+        Reunion reunion = new Reunion();
         Informe informe = new Informe(reunion);
         assertNotNull(informe.fecha);
         assertNotNull(informe.horaPrevista);
@@ -24,20 +25,19 @@ public class InformeTest {
 
     @Test
     public void testExportarInformeTXT() {
-        Reunion reunion = new Reunion(); // create a sample Reunion object
+        Reunion reunion = new Reunion();
         Informe informe = new Informe(reunion);
         String fileName = "informe.txt";
         informe.exportarInformeTXT(fileName);
         assertTrue(new File(fileName).exists());
-        // verify the contents of the file
+
     }
 
     @Test(expected = IOException.class)
     public void testExportarInformeTXTIOException() {
-        Reunion reunion = new Reunion(); // create a sample Reunion object
+        Reunion reunion = new Reunion();
         Informe informe = new Informe(reunion);
         String fileName = "informe.txt";
-        // simulate an IOException
         informe.exportarInformeTXT(fileName);
     }
 }
