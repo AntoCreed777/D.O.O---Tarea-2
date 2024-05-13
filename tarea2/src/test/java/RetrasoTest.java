@@ -1,29 +1,46 @@
+
+Editar
+Pantalla completa
+Copiar código
 package Clases;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 
-class InvitableTest {
+public class RetrasoTest {
 
     @Test
-    void testIsInvitable() {
-        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        Invitable invitable = new Invitable() {
-            @Override
-            public boolean isInvitable(Empleado empleado) {
-                return empleado.getNombre().equals("Valeria");
-            }
-        };
-        assertTrue(invitable.isInvitable(empleado));
+    public void testRetrasoConstructor() {
+        // Arrange
+        Empleado empleadoMock = Mockito.mock(Empleado.class);
+        Instant hora = Instant.now().minus(10, ChronoUnit.MINUTES);
 
-        invitable = new Invitable() {
-            @Override
-            public boolean isInvitable(Empleado empleado) {
-                return empleado.getNombre().equals("Juan");
-            }
-        };
-        assertFalse(invitable.isInvitable(empleado));
+        // Act
+        Retraso retraso = new Retraso(empleadoMock, hora);
+
+        // Assert
+        Assertions.assertNotNull(retraso);
+        Assertions.assertEquals(empleadoMock, retraso.getEmpleado());
+        Assertions.assertEquals(hora, retraso.getHora());
+    }
+
+    @Test
+    public void testRetrasoToString() {
+        // Arrange
+        Empleado empleadoMock = Mockito.mock(Empleado.class);
+        Instant hora = Instant.now().minus(10, ChronoUnit.MINUTES);
+        Retraso retraso = new Retraso(empleadoMock, hora);
+
+        // Act
+        String result = retraso.toString();
+
+        // Assert
+        Assertions.assertNotNull(result);
+        Assertions.assertTrue(result.contains("Retraso"));
+        Assertions.assertTrue(result.contains("si es que llego atrasado"));
     }
 }

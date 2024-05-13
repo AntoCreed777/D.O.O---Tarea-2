@@ -8,14 +8,15 @@ class NotaTest {
 
     @Test
     void testGetContenido() {
-        Nota nota = new Nota("Este es un ejemplo de nota");
-        assertEquals("Este es un ejemplo de nota", nota.getContenido());
+        String contenido = "Este es un ejemplo de nota";
+        Nota nota = new Nota(contenido);
+        assertEquals(contenido, nota.getContenido());
     }
 
     @Test
-    void testSetContenido() {
-        Nota nota = new Nota();
-        nota.setContenido("Este es un ejemplo de nota");
-        assertEquals("Este es un ejemplo de nota", nota.getContenido());
+    void testToString() {
+        Nota nota = new Nota("Este es un ejemplo de nota");
+        String expectedToString = "'Nota' representa a una nota de texto que indique algo con respecto a la reunion";
+        assertEquals(expectedToString, nota.toString());
     }
 }

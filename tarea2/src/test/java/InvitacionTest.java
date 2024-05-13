@@ -2,19 +2,37 @@ package Clases;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class InvitacionTest {
 
     @Test
-    void testGetNombreDepartamento() {
-        Invitacion invitacion = new Invitacion("IT", "Taller de desarrollo");
-        assertEquals("IT", invitacion.getNombreDepartamento());
+    void testGetInvitado() {
+        Reunion reunion = new Reunion("Taller de desarrollo", Instant.now().plus(1, ChronoUnit.HOURS));
+        Departamento invitado = new Departamento("IT");
+        Invitacion invitacion = new Invitacion(reunion, invitado);
+
+        assertEquals(invitado, invitacion.getInvitado());
     }
 
     @Test
-    void testGetNombreEvento() {
-        Invitacion invitacion = new Invitacion("IT", "Taller de desarrollo");
-        assertEquals("Taller de desarrollo", invitacion.getNombreEvento());
+    void testGetHora() {
+        Reunion reunion = new Reunion("Taller de desarrollo", Instant.now().plus(1, ChronoUnit.HOURS));
+        Departamento invitado = new Departamento("IT");
+        Invitacion invitacion = new Invitacion(reunion, invitado);
+
+        assertEquals(reunion.getHoraPrevista(), invitacion.getHora());
+    }
+
+    @Test
+    void testGetReunion() {
+        Reunion reunion = new Reunion("Taller de desarrollo", Instant.now().plus(1, ChronoUnit.HOURS));
+        Departamento invitado = new Departamento("IT");
+        Invitacion invitacion = new Invitacion(reunion, invitado);
+
+        assertEquals(reunion, invitacion.getReunion());
     }
 }
