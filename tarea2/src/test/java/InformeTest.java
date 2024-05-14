@@ -1,10 +1,11 @@
 import Clases.*;
 import org.junit.jupiter.api.Test;
 
-import Clases.Informe;
-import Clases.Reunion;
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -30,7 +31,13 @@ public class InformeTest {
 
     @Test
     public void testExportarInformeTXT() {
-        Reunion reunion = new Reunion();
+        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+        Date fecha = new Date();
+        Instant horaPrevista = Instant.now();
+        Duration duracionPrevista = Duration.ofHours(2);
+        String sala = "sala 2";
+        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
+                sala);
         Informe informe = new Informe(reunion);
         String fileName = "informe.txt";
         try {
@@ -44,7 +51,13 @@ public class InformeTest {
 
     @Test(expected = IOException.class)
     public void testExportarInformeTXTIOException() {
-        Reunion reunion = new Reunion();
+        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+        Date fecha = new Date();
+        Instant horaPrevista = Instant.now();
+        Duration duracionPrevista = Duration.ofHours(2);
+        String sala = "sala 2";
+        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
+                sala);
         Informe informe = new Informe(reunion);
         String fileName = "informe.txt";
         informe.exportarInformeTXT(fileName);
