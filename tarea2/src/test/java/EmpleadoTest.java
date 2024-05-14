@@ -4,7 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 class EmpleadoTest {
@@ -30,16 +34,13 @@ class EmpleadoTest {
     @Test
     void TestInvitarYAdministrarInvitaciones() {
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        Reunion reunion = new Reunion("IT", "Taller de desarrollo");
+        Date fecha = new Date();
+        Instant horaPrevista = Instant.now();
+        Duration duracionPrevista = Duration.ofHours(2);
+        String sala = "sala 2";
+        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
+                sala);
         empleado.invitar(reunion);
-        List<Invitacion> invitaciones = empleado.getInvitaciones();
-        assertNotNull(invitaciones);
-        assertEquals(1, invitaciones.size());
-        Invitacion invitacion = invitaciones.get(0);
-        assertEquals(reunion, invitacion.getReunion());
-        assertEquals(empleado, invitacion.getInvitado());
-
-        empleado.quitarInvitacion(invitacion);
-        assertEquals(0, empleado.getInvitaciones().size());
+        assertTrue(reunion.obtenerAsistencias().stream().anyMatch(asistencia -> asistencia.getEmpleado() == empleado));
     }
 }
