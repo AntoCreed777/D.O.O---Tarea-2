@@ -11,6 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ReunionPresencialTest {
@@ -24,12 +25,13 @@ class ReunionPresencialTest {
         List<Empleado> empleados = new ArrayList<>();
         empleados.add(empleado);
         String sala = "sala 2";
-        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,sala);
-         List<Empleado> empleadosReunion = new ArrayList<>();
-         empleadosReunion.add(empleado);
-         assertTrue(empleadosReunion.contains(empleado));
-         Empleado otroEmpleado = new Empleado("2", "Quiroga", "Juan", "juan@example.com");
-         assertFalse(empleadosReunion.contains(otroEmpleado));
+        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
+                sala);
+        List<Empleado> empleadosReunion = new ArrayList<>();
+        empleadosReunion.add(empleado);
+        assertTrue(empleadosReunion.contains(empleado));
+        Empleado otroEmpleado = new Empleado("2", "Quiroga", "Juan", "juan@example.com");
+        assertFalse(empleadosReunion.contains(otroEmpleado));
     }
 
     @Test
@@ -39,7 +41,8 @@ class ReunionPresencialTest {
         Instant horaPrevista = Instant.now();
         Duration duracionPrevista = Duration.ofHours(2);
         String sala = "sala 2";
-        Reunion reunionPresencial = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista, sala);
+        Reunion reunionPresencial = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista,
+                duracionPrevista, sala);
         assertEquals(fecha, reunionPresencial.getFecha());
     }
 
@@ -58,13 +61,22 @@ class ReunionPresencialTest {
     @Test
     void testObtenerEmpleados() {
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        List<Empleado> empleados = new ArrayList<>();
         Date fecha = new Date();
         Instant horaPrevista = Instant.now();
         Duration duracionPrevista = Duration.ofHours(2);
         String sala = "sala 2";
-        Reunion reunionPresencial = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista,duracionPrevista, sala);
-        assertTrue(reunionPresencial.getAsistentes().contains(empleado));
+        Reunion reunionPresencial = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista,
+                duracionPrevista, sala);
+        List<Asistencia> asistencias = reunionPresencial.obtenerAsistencias();
+        assertNotNull(asistencias);
+        boolean empleadoEncontrado = false;
+        for (Asistencia asistencia : asistencias) {
+            if (asistencia.getEmpleado().getId().equals(empleado.getId())) {
+                empleadoEncontrado = true;
+                break;
+            }
+        }
+        assertTrue(empleadoEncontrado);
     }
 
 }

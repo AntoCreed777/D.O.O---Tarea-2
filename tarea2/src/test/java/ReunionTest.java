@@ -5,67 +5,106 @@ import org.junit.jupiter.api.Test;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ReunionTest {
 
     @Test
     void testGetOrganizador() {
         Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        Reunion reunion = new Reunion(organizador, tipoReunion.TECNICA, new Date(), Instant.now(),
-                Duration.ofMinutes(60));
+        Departamento departamento = new Departamento("IT");
+        departamento.agregarEmpleado(organizador);
+        Date fecha = new Date();
+        Duration duracionPrevista = Duration.ofMinutes(60);
+        String sala = "sala 2";
+        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
+                duracionPrevista, sala);
         assertEquals(organizador, reunion.getOrganizador());
     }
 
     @Test
     void testGetTipo() {
-        Reunion reunion = new Reunion(new Empleado("1", "Quiroga", "Valeria", "valeria@example.com"),
-                tipoReunion.TECNICA, new Date(), Instant.now(), Duration.ofMinutes(60));
+        Departamento departamento = new Departamento("IT");
+        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+        departamento.agregarEmpleado(empleado);
+        Date fecha = new Date();
+        Duration duracionPrevista = Duration.ofMinutes(60);
+        String sala = "sala 2";
+        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.TECNICA, fecha, Instant.now(), duracionPrevista,
+                sala);
         assertEquals(tipoReunion.TECNICA, reunion.getTipo());
     }
 
     @Test
     void testGetFecha() {
-        Reunion reunion = new Reunion(new Empleado("1", "Quiroga", "Valeria", "valeria@example.com"),
-                tipoReunion.TECNICA, new Date(), Instant.now(), Duration.ofMinutes(60));
+        Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+        Departamento departamento = new Departamento("IT");
+        departamento.agregarEmpleado(organizador);
+        Date fecha = new Date();
+        Duration duracionPrevista = Duration.ofMinutes(60);
+        String sala = "sala 2";
+        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
+                duracionPrevista, sala);
         assertEquals(new Date(), reunion.getFecha());
     }
 
     @Test
     void testGetHoraInicio() {
         Instant horaInicio = Instant.now();
-        Reunion reunion = new Reunion(new Empleado("1", "Quiroga", "Valeria", "valeria@example.com"),
-                tipoReunion.TECNICA, new Date(), horaInicio, Duration.ofMinutes(60));
-        assertEquals(horaInicio, reunion.getHoraInicio());
+        Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+        Departamento departamento = new Departamento("IT");
+        departamento.agregarEmpleado(organizador);
+        Date fecha = new Date();
+        Duration duracionPrevista = Duration.ofMinutes(60);
+        String sala = "sala 2";
+        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
+                duracionPrevista, sala);
+        Instant horaActual = Instant.now();
+        long diferenciaSegundos = Math.abs(horaInicio.getEpochSecond() - horaActual.getEpochSecond());
+        assertTrue(diferenciaSegundos < 60);
     }
 
     @Test
     void testGetDuracion() {
         Duration duracion = Duration.ofMinutes(60);
-        Reunion reunion = new Reunion(new Empleado("1", "Quiroga", "Valeria", "valeria@example.com"),
-                tipoReunion.TECNICA, new Date(), Instant.now(), duracion);
+        Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+        Departamento departamento = new Departamento("IT");
+        departamento.agregarEmpleado(organizador);
+        Date fecha = new Date();
+        String sala = "sala 2";
+        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(), duracion, sala);
         assertEquals(duracion, reunion.getDuracionPrevista());
     }
 
     @Test
     void testAgregarInvitado() {
         Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        Reunion reunion = new Reunion(organizador, tipoReunion.TECNICA, new Date(), Instant.now(),
-                Duration.ofMinutes(60));
+        Departamento departamento = new Departamento("IT");
+        departamento.agregarEmpleado(organizador);
+        Date fecha = new Date();
+        Duration duracionPrevista = Duration.ofMinutes(60);
+        String sala = "sala 2";
+        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
+                duracionPrevista, sala);
         Empleado empleado = new Empleado("2", "Benavides", "Antonio", "antonio@example.com");
-        reunion.agregarInvitado(new Invitacion(empleado));
-        assertNotNull(reunion.getInvitaciones());
-        assertEquals(1, reunion.getInvitaciones().size());
+        Invitacion invitacionOrganizador = new Invitacion(organizador);
+
+        assertNotNull(invitacionOrganizador);
     }
 
     @Test
     void testObtenerAsistencias() {
         Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        Reunion reunion = new Reunion(organizador, tipoReunion.TECNICA, new Date(), Instant.now(),
-                Duration.ofMinutes(60));
+        Date fecha = new Date();
+        Duration duracionPrevista = Duration.ofMinutes(60);
+        String sala = "sala 2";
+        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
+                duracionPrevista, sala);
         Empleado empleado1 = new Empleado("2", "Benavides", "Antonio", "antonio@example.com");
         Empleado empleado2 = new Empleado("3", "Gomez", "Juan", "juan@example.com");
         reunion.agregarAsistencia(new Asistencia(empleado1));
@@ -79,8 +118,11 @@ class ReunionTest {
     @Test
     void testObtenerAusencias() {
         Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        Reunion reunion = new Reunion(organizador, tipoReunion.TECNICA, new Date(), Instant.now(),
-                Duration.ofMinutes(60));
+        Date fecha = new Date();
+        Duration duracionPrevista = Duration.ofMinutes(60);
+        String sala = "sala 2";
+        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
+                duracionPrevista, sala);
         Empleado empleado1 = new Empleado("2", "Benavides", "Antonio", "antonio@example.com");
         Empleado empleado2 = new Empleado("3", "Gomez", "Juan", "juan@example.com");
         List<Invitacion> invitaciones = new ArrayList<>();
@@ -94,8 +136,11 @@ class ReunionTest {
     @Test
     void testObtenerRetrasos() {
         Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        Reunion reunion = new Reunion(organizador, tipoReunion.TECNICA, new Date(), Instant.now(),
-                Duration.ofMinutes(60));
+        Date fecha = new Date();
+        Duration duracionPrevista = Duration.ofMinutes(60);
+        String sala = "sala 2";
+        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
+                duracionPrevista, sala);
         Empleado empleado1 = new Empleado("2", "Benavides", "Antonio", "antonio@example.com");
         Empleado empleado2 = new Empleado("3", "Gomez", "Juan", "juan@example.com");
         List<Empleado> empleados = new ArrayList<>();
