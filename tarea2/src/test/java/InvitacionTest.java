@@ -2,8 +2,9 @@ import Clases.*;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
 import java.time.Instant;
-import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -11,8 +12,13 @@ class InvitacionTest {
 
     @Test
     void testGetInvitado() {
-        Reunion reunion = new ReunionPresencial("Taller de desarrollo", Instant.now().plus(1, ChronoUnit.HOURS),
-                Duration.ofHours(1), "Sala de conferencias");
+        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+        Date fecha = new Date();
+        Instant horaPrevista = Instant.now();
+        Duration duracionPrevista = Duration.ofHours(2);
+        String sala = "sala 2";
+        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
+                sala);
         Departamento invitado = new Departamento("IT");
         Invitacion invitacion = new Invitacion(reunion, invitado);
 
@@ -21,7 +27,13 @@ class InvitacionTest {
 
     @Test
     void testGetHora() {
-        Reunion reunion = new Reunion("Taller de desarrollo", Instant.now().plus(1, ChronoUnit.HOURS));
+        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+        Date fecha = new Date();
+        Instant horaPrevista = Instant.now();
+        Duration duracionPrevista = Duration.ofHours(2);
+        String sala = "sala 2";
+        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
+                sala);
         Departamento invitado = new Departamento("IT");
         Invitacion invitacion = new Invitacion(reunion, invitado);
 
@@ -30,7 +42,13 @@ class InvitacionTest {
 
     @Test
     void testGetReunion() {
-        Reunion reunion = new Reunion("Taller de desarrollo", Instant.now().plus(1, ChronoUnit.HOURS));
+        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+        Date fecha = new Date();
+        Instant horaPrevista = Instant.now();
+        Duration duracionPrevista = Duration.ofHours(2);
+        String sala = "sala 2";
+        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
+                sala);
         Departamento invitado = new Departamento("IT");
         Invitacion invitacion = new Invitacion(reunion, invitado);
 
