@@ -2,9 +2,12 @@ import Clases.*;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import Clases.ReunionPresencial;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -48,7 +51,12 @@ class DepartamentoTest {
         Departamento departamento = new Departamento("IT");
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
         departamento.agregarEmpleado(empleado);
-        Reunion reunion = new Reunion(empleado, tipoReunion.TECNICA, Date, Instant.now(), Duration.ofHours(1));
+        Date fecha = new Date();
+        Instant horaPrevista = Instant.now();
+        Duration duracionPrevista = Duration.ofHours(2);
+        String sala = "sala 2";
+        Reunion reunion = new ReunionPrecencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
+                sala);
         departamento.invitar(reunion);
         assertEquals(1, empleado.getInvitaciones().size());
     }
