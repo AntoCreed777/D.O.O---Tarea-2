@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import Clases.Asistencia;
 import Clases.Empleado;
 
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AsistenciaTest {
 
@@ -13,6 +13,6 @@ class AsistenciaTest {
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
         Asistencia asistencia = new Asistencia(empleado);
 
-        assertSame(empleado, asistencia.getEmpleado());
+        assertEquals(empleado, asistencia.getEmpleado());
     }
 }

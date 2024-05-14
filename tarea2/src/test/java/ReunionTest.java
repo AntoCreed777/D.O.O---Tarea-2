@@ -18,10 +18,6 @@ class ReunionTest {
     void testGetOrganizador() {
         Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
 
-        //INNECESARIO
-        //Departamento departamento = new Departamento("IT");
-        //departamento.agregarEmpleado(organizador);
-
         Date fecha = new Date();
         Duration duracionPrevista = Duration.ofMinutes(60);
         String sala = "sala 2";
@@ -35,10 +31,6 @@ class ReunionTest {
     @Test
     void testGetTipo() {
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-
-        //INNECESARIO
-        //Departamento departamento = new Departamento("IT");
-        //departamento.agregarEmpleado(empleado);
 
         Date fecha = new Date();
         Duration duracionPrevista = Duration.ofMinutes(60);
@@ -54,10 +46,6 @@ class ReunionTest {
     void testGetFecha() {
         Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
 
-        //INNECESARIO
-        //Departamento departamento = new Departamento("IT");
-        //departamento.agregarEmpleado(organizador);
-
         Date fecha = new Date();
         Duration duracionPrevista = Duration.ofMinutes(60);
         String sala = "sala 2";
@@ -65,17 +53,13 @@ class ReunionTest {
         Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
                 duracionPrevista, sala);
 
-        assertEquals(new Date(), reunion.getFecha());
+        assertEquals(fecha, reunion.getFecha());
     }
 
     @Test
     void testGetHoraInicio() {
-        Instant horaInicio = Instant.now();
+        Instant horaPrevista = Instant.now();
         Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-
-        //INNECESARIO
-        //Departamento departamento = new Departamento("IT");
-        //departamento.agregarEmpleado(organizador);
 
         Date fecha = new Date();
         Duration duracionPrevista = Duration.ofMinutes(60);
@@ -84,21 +68,18 @@ class ReunionTest {
         Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
                 duracionPrevista, sala);
 
-        Instant horaActual = Instant.now();
+        assertEquals(horaPrevista, reunion.getHoraPrevista());
 
-        //QUE SE HACE AQUI???
-        long diferenciaSegundos = Math.abs(horaInicio.getEpochSecond() - horaActual.getEpochSecond());
-        assertTrue(diferenciaSegundos < 60);
+        reunion.iniciar(null);
+
+        long diferenciaSegundos = Math.abs(reunion.getHorarioInicio().getEpochSecond() - Instant.now().getEpochSecond());
+        assertTrue(diferenciaSegundos < 1);
     }
 
     @Test
     void testGetDuracion() {
         Duration duracion = Duration.ofMinutes(60);
         Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-
-        //INNECESARIO
-        //Departamento departamento = new Departamento("IT");
-        //departamento.agregarEmpleado(organizador);
 
         Date fecha = new Date();
         String sala = "sala 2";
@@ -145,6 +126,9 @@ class ReunionTest {
         Empleado empleado1 = new Empleado("2", "Benavides", "Antonio", "antonio@example.com");
         Empleado empleado2 = new Empleado("3", "Gomez", "Juan", "juan@example.com");
 
+        empleado1.invitar(reunion);
+        empleado2.invitar(reunion);
+
         List<Asistencia> asistencias = new ArrayList<>();
         asistencias.add(new Asistencia(empleado1));
 
@@ -172,11 +156,16 @@ class ReunionTest {
         List<Asistencia> asistencias = new ArrayList<>();
 
         asistencias.add(new Asistencia(empleado1));
-        asistencias.add(new Asistencia(empleado2));
 
         reunion.iniciar(asistencias);
 
         List<Asistencia> retrasos = reunion.obtenerRetrasos();
         assertEquals(0, retrasos.size());
+
+        reunion.agregarRetrasado(empleado2);
+
+        retrasos = reunion.obtenerRetrasos();
+        assertEquals(1, retrasos.size());
+        assertEquals(empleado2, retrasos.get(0).getEmpleado());
     }
 }

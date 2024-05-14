@@ -33,11 +33,12 @@ class DepartamentoTest {
     }
 
     @Test
-    void testAgregarEmpleado() {//???? PARA QUE  ??
+    void testAgregarEmpleado() {
         Departamento departamento = new Departamento("IT");
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
         departamento.agregarEmpleado(empleado);
         assertEquals(1, departamento.getEmpleados().size());
+        assertEquals(empleado, departamento.getEmpleados().get(0));
     }
 
     @Test
@@ -51,7 +52,7 @@ class DepartamentoTest {
 
         departamento.quitarEmpleado(empleado1);
 
-        assertSame(empleado2, departamento.getEmpleados().get(0));
+        assertEquals(empleado2, departamento.getEmpleados().get(0));
     }
 
     @Test
@@ -71,9 +72,7 @@ class DepartamentoTest {
 
         departamento.invitar(reunion);
 
-        //PORQUE ESTE TIPO DE TEST Y CON ESA VARIABLE
-        assertEquals(1, reunion.getTipo());
-
+        assertEquals(tipoReunion.OTRO,reunion.getTipo());
     }
 
     @Test

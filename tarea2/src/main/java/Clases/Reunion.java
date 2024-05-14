@@ -244,5 +244,12 @@ abstract public class Reunion{
     public tipoReunion getTipo(){
         return tipo;
     }
-    
+
+    /**
+     * Funcion que retorna la lista de Invitaciones
+     * @return Lista de Invitaciones
+     */
+    public List <Invitacion> getInvitados(){
+        return invitaciones;
+    }
 }

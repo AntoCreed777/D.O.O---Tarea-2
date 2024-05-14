@@ -9,10 +9,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Assertions;
+
 
 class ReunionPresencialTest {
 
@@ -25,14 +23,25 @@ class ReunionPresencialTest {
         List<Empleado> empleados = new ArrayList<>();
         empleados.add(empleado);
         String sala = "sala 2";
+
         Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
                 sala);
 
-        List<Empleado> empleadosReunion = new ArrayList<>();
-        empleadosReunion.add(empleado);
-        assertTrue(empleadosReunion.contains(empleado));
+        boolean aux = false;
+        for (Invitacion invitado: reunion.getInvitados()){
+            if(invitado.getInvitado().equals(empleado)){
+                aux = true;
+                break;
+            }
+        }
+
+        Assertions.assertEquals(true,aux); //Se comprueba que el empleado este en la lista ded Invitados
+
         Empleado otroEmpleado = new Empleado("2", "Quiroga", "Juan", "juan@example.com");
-        assertFalse(empleadosReunion.contains(otroEmpleado));
+
+        aux = false;
+        for (Invitacion invitado: reunion.getInvitados()){if(invitado.getInvitado().equals((Invitable) otroEmpleado)){aux = true;break;}}
+        Assertions.assertFalse(aux); //Se comprueba que el empleado este en la lista ded Invitados
     }
 
     @Test
@@ -42,9 +51,11 @@ class ReunionPresencialTest {
         Instant horaPrevista = Instant.now();
         Duration duracionPrevista = Duration.ofHours(2);
         String sala = "sala 2";
+
         Reunion reunionPresencial = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista,
                 duracionPrevista, sala);
-        assertEquals(fecha, reunionPresencial.getFecha());
+
+        Assertions.assertEquals(fecha, reunionPresencial.getFecha());
     }
 
     @Test
@@ -54,30 +65,41 @@ class ReunionPresencialTest {
         Date fecha = new Date();
         Instant horaPrevista = Instant.now();
         Duration duracionPrevista = Duration.ofHours(2);
+
         ReunionPresencial reunionPresencial = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista,
                 duracionPrevista, sala);
-        assertEquals(sala, reunionPresencial.getSala());
+
+        Assertions.assertEquals(sala, reunionPresencial.getSala());
     }
 
     @Test
-    void testObtenerEmpleados() { //QUE TIPO DED EMPLEADOS, ASISTENCIA, RETRASOS o AUSENCIAS
+    void testObtenerAsistencias() { //QUE TIPO DE EMPLEADOS, ASISTENCIA, RETRASOS o AUSENCIAS
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
         Date fecha = new Date();
         Instant horaPrevista = Instant.now();
         Duration duracionPrevista = Duration.ofHours(2);
         String sala = "sala 2";
+
         Reunion reunionPresencial = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista,
                 duracionPrevista, sala);
-        List<Asistencia> asistencias = reunionPresencial.obtenerAsistencias();
-        assertNotNull(asistencias);
+
+        Empleado empleado1 = new Empleado("2", "Quiroga", "Valeria", "valeria@example.com");
+
+        List<Asistencia> asistencias= new ArrayList<Asistencia>();
+        asistencias.add(new Asistencia(empleado1));
+
+        reunionPresencial.iniciar(asistencias);
+
         boolean empleadoEncontrado = false;
-        for (Asistencia asistencia : asistencias) {
-            if (asistencia.getEmpleado().getId().equals(empleado.getId())) {
+
+        for (Asistencia asistencia : reunionPresencial.obtenerAsistencias()) {
+            if (asistencia.getEmpleado().equals(empleado1)) {
                 empleadoEncontrado = true;
                 break;
             }
         }
-        assertTrue(empleadoEncontrado);
+
+        Assertions.assertTrue(empleadoEncontrado);
     }
 
 }

@@ -45,7 +45,6 @@ class EmpleadoTest {
 
         empleado.invitar(reunion);
 
-        //QUE PASA AQUI??
-        assertTrue(reunion.obtenerAsistencias().stream().anyMatch(asistencia -> asistencia.getEmpleado() == empleado));
+        assertEquals(empleado, reunion.getInvitados().get(0).getInvitado());
     }
 }

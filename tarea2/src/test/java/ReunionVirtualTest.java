@@ -9,76 +9,105 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Assertions;
+
 
 class ReunionVirtualTest {
 
     @Test
-    void testEsInvitable() {  //PARA QUE
+    void testInvitadoAReunion() {  //ESTA MUY RARO
         Date fecha = new Date();
         Instant horaPrevista = Instant.now();
         Duration duracionPrevista = Duration.ofHours(1);
-
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
         List<Empleado> empleados = new ArrayList<>();
         empleados.add(empleado);
+        String enlace = "enlace 2";
 
-        ReunionVirtual reunionVirtual = new ReunionVirtual(empleado, tipoReunion.TECNICA,fecha, horaPrevista, duracionPrevista, "Enlace 1");
+        Reunion reunion = new ReunionVirtual(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
+                enlace);
 
-        //QUE HACE AQUI
-        Invitable invitable = reunionVirtual::isInvitable;
-        assertTrue(invitable.isInvitable(empleado));
+        boolean aux = false;
+        for (Invitacion invitado: reunion.getInvitados()){if(invitado.getInvitado() == empleado){aux = true;}}
+        Assertions.assertTrue(aux); //Se comprueba que el empleado este en la lista ded Invitados
+
+        Empleado otroEmpleado = new Empleado("2", "Quiroga", "Juan", "juan@example.com");
+
+        aux = false;
+        for (Invitacion invitado: reunion.getInvitados()){if(invitado.getInvitado() == otroEmpleado){aux = true;}}
+        Assertions.assertFalse(aux); //Se comprueba que el empleado este en la lista ded Invitados
     }
 
     @Test
-    void testGetFechaCorrecta() { //????
-        LocalDateTime fecha = LocalDateTime.of(2022, 1, 1, 10, 0);
-        ReunionVirtual reunionVirtual = new ReunionVirtual("Enlace 1", new ArrayList<>(), fecha);
-        assertEquals(fecha, reunionVirtual.getFecha());
+    void testObtenerFecha() {
+        Date fecha = new Date();
+        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+        Instant horaPrevista = Instant.now();
+        Duration duracionPrevista = Duration.ofHours(2);
+        String enlace = "enlace 2";
+
+        Reunion reunionVirtual = new ReunionVirtual(empleado, tipoReunion.OTRO, fecha, horaPrevista,
+                duracionPrevista, enlace);
+
+        Assertions.assertEquals(fecha, reunionVirtual.getFecha());
     }
 
     @Test
-    void testGetEnlaceCorrecto() { //????
-        String enlace = "Enlace 1";
-        ReunionVirtual reunionVirtual = new ReunionVirtual(
-                new Empleado("1", "Quiroga", "Valeria", "valeria@example.com"),
-                ReunionVirtual.tipoReunion.REUNION_ORDINARIA, enlace, new ArrayList<>(),
-                LocalDateTime.of(2022, 1, 1, 10, 0));
-        assertEquals(enlace, reunionVirtual.getEnlace());
-    }
-
-    @Test
-    void testSetEnlaceCorrecto() { //????
-        String enlace = "Enlace 1";
-        ReunionVirtual reunionVirtual = new ReunionVirtual();
-        reunionVirtual.setEnlace(enlace);
-        assertEquals(enlace, reunionVirtual.getEnlace());
-    }
-
-    @Test
-    void testGetEmpleadosCorrectos() {  //ASISTENCIA, RETRASOS, AUSENCIA, QUE EMPLEADOS???
+    void testObtenerenlace() {
+        String enlace = "enlace 1";
+        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
         Date fecha = new Date();
         Instant horaPrevista = Instant.now();
-        Duration duracionPrevista = Duration.ofHours(1);
+        Duration duracionPrevista = Duration.ofHours(2);
 
-        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        List<Empleado> empleados = new ArrayList<>();
-        empleados.add(empleado);
+        ReunionVirtual reunionVirtual = new ReunionVirtual(empleado, tipoReunion.OTRO, fecha, horaPrevista,
+                duracionPrevista, enlace);
 
-        ReunionVirtual reunionVirtual = new ReunionVirtual(empleado, tipoReunion.TECNICA,fecha, horaPrevista, duracionPrevista, "Enlace 1");
-
-        assertEquals(empleados, reunionVirtual.());
+        Assertions.assertEquals(enlace, reunionVirtual.getEnlace());
     }
 
     @Test
-    void testSetEmpleadosCorrectos() {  //PARA QUE??
+    void testObtenerAsistencias() { //QUE TIPO DE EMPLEADOS, ASISTENCIA, RETRASOS o AUSENCIAS
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        List<Empleado> empleados = new ArrayList<>();
-        empleados.add(empleado);
-        ReunionVirtual reunionVirtual = new ReunionVirtual();
-        reunionVirtual.setEmpleados(empleados);
-        assertEquals(empleados, reunionVirtual.getEmpleados());
+        Date fecha = new Date();
+        Instant horaPrevista = Instant.now();
+        Duration duracionPrevista = Duration.ofHours(2);
+        String enlace = "enlace 2";
+
+        Reunion reunionVirtual = new ReunionVirtual(empleado, tipoReunion.OTRO, fecha, horaPrevista,
+                duracionPrevista, enlace);
+
+        Empleado empleado1 = new Empleado("2", "Quiroga", "Valeria", "valeria@example.com");
+
+        List<Asistencia> asistencias= new ArrayList<Asistencia>();
+        asistencias.add(new Asistencia(empleado1));
+
+        reunionVirtual.iniciar(asistencias);
+
+        boolean empleadoEncontrado = false;
+
+        for (Asistencia asistencia : reunionVirtual.obtenerAsistencias()) {
+            if (asistencia.getEmpleado().equals(empleado1)) {
+                empleadoEncontrado = true;
+                break;
+            }
+        }
+
+        Assertions.assertTrue(empleadoEncontrado);
     }
+
+    @Test
+    void testObtenerEnlace() {
+        String enlace = "Enlace 1";
+        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+        Date fecha = new Date();
+        Instant horaPrevista = Instant.now();
+        Duration duracionPrevista = Duration.ofHours(2);
+
+        ReunionVirtual reunionVirtual = new ReunionVirtual(empleado, tipoReunion.OTRO, fecha, horaPrevista,
+                duracionPrevista, enlace);
+
+        Assertions.assertEquals(enlace, reunionVirtual.getEnlace());
+    }
+
 }
