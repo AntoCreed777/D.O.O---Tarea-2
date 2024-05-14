@@ -42,6 +42,6 @@ public class ReunionVirtual extends Reunion{
      */
     @Override
     public String toString() {
-        return super.toString() + "de forma virtual";
+        return super.toString() + " de forma virtual";
     }
 }

@@ -44,4 +44,11 @@ class EmpleadoTest {
 
         assertEquals(empleado, reunion.getInvitados().get(0).getInvitado());
     }
+
+    @Test
+    void TestId(){
+        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+
+        assertEquals("1", empleado.getId());
+    }
 }
