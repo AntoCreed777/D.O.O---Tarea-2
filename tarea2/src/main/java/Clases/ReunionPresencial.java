@@ -43,6 +43,6 @@ public class ReunionPresencial extends Reunion{
      */
     @Override
     public String toString() {
-        return super.toString() + "en una sala";
+        return super.toString() + " en una sala";
     }
 }

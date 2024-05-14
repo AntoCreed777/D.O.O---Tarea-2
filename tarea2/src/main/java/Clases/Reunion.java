@@ -175,7 +175,7 @@ abstract public class Reunion{
      */
     @Override
     public String toString() {
-        return "'Reunion' representa una reunion de una empresa";
+        return "Representa una reunion de una empresa";
     }
 
     //#region GETTER

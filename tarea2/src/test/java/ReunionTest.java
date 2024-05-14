@@ -103,7 +103,7 @@ class ReunionTest {
         Empleado empleado2 = new Empleado("3", "Gomez", "Juan", "juan@example.com");
 
         List<Asistencia> asistencias = new ArrayList<>();
-        
+
         asistencias.add(new Asistencia(empleado1));
         asistencias.add(new Asistencia(empleado2));
 
@@ -171,4 +171,29 @@ class ReunionTest {
         assertEquals(1, retrasos.size());
         assertEquals(empleado2, retrasos.get(0).getEmpleado());
     }
+
+    @Test
+    void testObtenerTotalAsistencia() { //FALTA CONFIRMAR CUANDO SE AGREGA AL RETRASO
+        Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+        Date fecha = new Date();
+        Duration duracionPrevista = Duration.ofMinutes(60);
+        String sala = "sala 2";
+
+        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(), duracionPrevista, sala);
+
+        Empleado empleado1 = new Empleado("2", "Benavides", "Antonio", "antonio@example.com");
+        Empleado empleado2 = new Empleado("3", "Gomez", "Juan", "juan@example.com");
+
+        List<Asistencia> asistencias = new ArrayList<>();
+
+        asistencias.add(new Asistencia(empleado1));
+        asistencias.add(new Asistencia(empleado2));
+
+        reunion.iniciar(asistencias);
+
+        List<Asistencia> asistenciasObtenidas = reunion.obtenerAsistencias();
+
+        assertEquals(asistenciasObtenidas.size(), reunion.obtenerTotalAsistencia());
+    }
+
 }

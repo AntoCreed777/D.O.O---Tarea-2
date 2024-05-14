@@ -18,7 +18,7 @@ public class RetrasoTest {
     @Test
     public void testRetrasoConstructor() {
         Empleado empleado = new Empleado("1", "Apellido", "Nombre", "correo@example.com");
-        Instant hora = Instant.now().minus(10, ChronoUnit.MINUTES);
+        Instant hora = Instant.now();
 
         Retraso retraso = new Retraso(empleado, hora);
 
@@ -30,7 +30,7 @@ public class RetrasoTest {
     @Test
     public void testRetrasoToString() {
         Empleado empleado = new Empleado("1", "Apellido", "Nombre", "correo@example.com");
-        Instant hora = Instant.now().minus(10, ChronoUnit.MINUTES);
+        Instant hora = Instant.now();
         Retraso retraso = new Retraso(empleado, hora);
 
         String result = retraso.toString();

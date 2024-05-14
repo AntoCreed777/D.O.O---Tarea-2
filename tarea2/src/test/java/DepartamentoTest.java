@@ -80,7 +80,7 @@ class DepartamentoTest {
 
         departamento.invitar(reunion);
 
-        assertEquals(tipoReunion.OTRO,reunion.getTipo());
+        assertEquals(departamento,reunion.getInvitados().get(0).getInvitado());
     }
 
     @Test
