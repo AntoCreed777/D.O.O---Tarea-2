@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,21 +19,32 @@ class ReunionVirtualTest {
         Instant horaPrevista = Instant.now();
         Duration duracionPrevista = Duration.ofHours(1);
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        List<Empleado> empleados = new ArrayList<>();
-        empleados.add(empleado);
         String enlace = "enlace 2";
 
         Reunion reunion = new ReunionVirtual(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
                 enlace);
 
+        empleado.invitar(reunion);
+
         boolean aux = false;
-        for (Invitacion invitado: reunion.getInvitados()){if(invitado.getInvitado() == empleado){aux = true;}}
-        Assertions.assertTrue(aux); //Se comprueba que el empleado este en la lista ded Invitados
+        for (Invitacion invitado: reunion.getInvitados()){
+            if(invitado.getInvitado().equals(empleado)){
+                aux = true;
+                break;
+            }
+        }
+
+        Assertions.assertEquals(true,aux); //Se comprueba que el empleado este en la lista ded Invitados
 
         Empleado otroEmpleado = new Empleado("2", "Quiroga", "Juan", "juan@example.com");
 
         aux = false;
-        for (Invitacion invitado: reunion.getInvitados()){if(invitado.getInvitado() == otroEmpleado){aux = true;}}
+        for (Invitacion invitado: reunion.getInvitados()){
+            if(invitado.getInvitado().equals(otroEmpleado)){
+                aux = true;break;
+            }
+        }
+
         Assertions.assertFalse(aux); //Se comprueba que el empleado este en la lista ded Invitados
     }
 

@@ -15,17 +15,17 @@ import org.junit.jupiter.api.Assertions;
 class ReunionPresencialTest {
 
     @Test
-    void testInvitadoAReunion() {  //ESTA MUY RARO
+    void testInvitadoAReunion() {
         Date fecha = new Date();
         Instant horaPrevista = Instant.now();
         Duration duracionPrevista = Duration.ofHours(1);
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        List<Empleado> empleados = new ArrayList<>();
-        empleados.add(empleado);
         String sala = "sala 2";
 
         Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
                 sala);
+
+        empleado.invitar(reunion);
 
         boolean aux = false;
         for (Invitacion invitado: reunion.getInvitados()){
@@ -40,7 +40,12 @@ class ReunionPresencialTest {
         Empleado otroEmpleado = new Empleado("2", "Quiroga", "Juan", "juan@example.com");
 
         aux = false;
-        for (Invitacion invitado: reunion.getInvitados()){if(invitado.getInvitado().equals((Invitable) otroEmpleado)){aux = true;break;}}
+        for (Invitacion invitado: reunion.getInvitados()){
+            if(invitado.getInvitado().equals(otroEmpleado)){
+                aux = true;break;
+            }
+        }
+
         Assertions.assertFalse(aux); //Se comprueba que el empleado este en la lista ded Invitados
     }
 
