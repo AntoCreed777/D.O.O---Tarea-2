@@ -1,3 +1,9 @@
+/**
+ * Clase que representa un departamento de una empresa.
+ * @author Maria Jose San Martin
+ */ 
+
+
 import Clases.*;
 
 import org.junit.jupiter.api.Test;
@@ -13,7 +19,9 @@ import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
+/*
+ * Test unitario que verifica el funcionamiento de la clase ReunionPresencial este correcto.
+ */
 class ReunionPresencialTest {
 
     @Test
