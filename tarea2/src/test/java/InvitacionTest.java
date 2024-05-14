@@ -17,9 +17,12 @@ class InvitacionTest {
         Instant horaPrevista = Instant.now();
         Duration duracionPrevista = Duration.ofHours(2);
         String sala = "sala 2";
+
         Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
                 sala);
+
         Departamento invitado = new Departamento("IT");
+
         Invitacion invitacion = new Invitacion(reunion, invitado);
 
         assertEquals(invitado, invitacion.getInvitado());
@@ -32,8 +35,10 @@ class InvitacionTest {
         Instant horaPrevista = Instant.now();
         Duration duracionPrevista = Duration.ofHours(2);
         String sala = "sala 2";
+
         Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
                 sala);
+
         Departamento invitado = new Departamento("IT");
         Invitacion invitacion = new Invitacion(reunion, invitado);
 
@@ -47,8 +52,10 @@ class InvitacionTest {
         Instant horaPrevista = Instant.now();
         Duration duracionPrevista = Duration.ofHours(2);
         String sala = "sala 2";
+
         Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
                 sala);
+
         Departamento invitado = new Departamento("IT");
         Invitacion invitacion = new Invitacion(reunion, invitado);
 

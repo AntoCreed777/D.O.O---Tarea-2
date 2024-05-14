@@ -16,9 +16,9 @@ public class InformeTest {
 
     @Test
     public void testConstructor() {
-        Reunion reunion = new Reunion();
+        Reunion reunion = new ReunionPresencial();
         Informe informe = new Informe(reunion);
-        assertNotNull(informe.fecha);
+        assertNotNull(informe.getfecha());
         assertNotNull(informe.horaPrevista);
         assertNotNull(informe.horarioInicio);
         assertNotNull(informe.horarioFin);

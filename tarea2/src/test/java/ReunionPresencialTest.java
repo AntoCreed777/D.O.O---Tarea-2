@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class ReunionPresencialTest {
 
     @Test
-    void testInvitadoAReunion() {
+    void testInvitadoAReunion() {  //ESTA MUY RARO
         Date fecha = new Date();
         Instant horaPrevista = Instant.now();
         Duration duracionPrevista = Duration.ofHours(1);
@@ -27,6 +27,7 @@ class ReunionPresencialTest {
         String sala = "sala 2";
         Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
                 sala);
+
         List<Empleado> empleadosReunion = new ArrayList<>();
         empleadosReunion.add(empleado);
         assertTrue(empleadosReunion.contains(empleado));
@@ -59,7 +60,7 @@ class ReunionPresencialTest {
     }
 
     @Test
-    void testObtenerEmpleados() {
+    void testObtenerEmpleados() { //QUE TIPO DED EMPLEADOS, ASISTENCIA, RETRASOS o AUSENCIAS
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
         Date fecha = new Date();
         Instant horaPrevista = Instant.now();

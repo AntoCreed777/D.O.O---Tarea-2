@@ -13,8 +13,6 @@ class AsistenciaTest {
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
         Asistencia asistencia = new Asistencia(empleado);
 
-        Empleado retrievedEmpleado = asistencia.getEmpleado();
-
-        assertSame(empleado, retrievedEmpleado);
+        assertSame(empleado, asistencia.getEmpleado());
     }
 }

@@ -34,13 +34,18 @@ class EmpleadoTest {
     @Test
     void TestInvitarYAdministrarInvitaciones() {
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+
         Date fecha = new Date();
         Instant horaPrevista = Instant.now();
         Duration duracionPrevista = Duration.ofHours(2);
         String sala = "sala 2";
+
         Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
                 sala);
+
         empleado.invitar(reunion);
+
+        //QUE PASA AQUI??
         assertTrue(reunion.obtenerAsistencias().stream().anyMatch(asistencia -> asistencia.getEmpleado() == empleado));
     }
 }

@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 class DepartamentoTest {
 
@@ -24,13 +25,15 @@ class DepartamentoTest {
         Departamento departamento = new Departamento("IT");
         Empleado empleado1 = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
         Empleado empleado2 = new Empleado("2", "Benavides", "Antonio", "antonio@example.com");
+
         departamento.agregarEmpleado(empleado1);
         departamento.agregarEmpleado(empleado2);
+
         assertEquals(2, departamento.obtenerCantidadEmpleados());
     }
 
     @Test
-    void testAgregarEmpleado() {
+    void testAgregarEmpleado() {//???? PARA QUE  ??
         Departamento departamento = new Departamento("IT");
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
         departamento.agregarEmpleado(empleado);
@@ -40,24 +43,35 @@ class DepartamentoTest {
     @Test
     void testQuitarEmpleado() {
         Departamento departamento = new Departamento("IT");
-        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        departamento.agregarEmpleado(empleado);
-        departamento.quitarEmpleado(empleado);
-        assertEquals(0, departamento.getEmpleados().size());
+        Empleado empleado1 = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+        Empleado empleado2 = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+
+        departamento.agregarEmpleado(empleado1);
+        departamento.agregarEmpleado(empleado2);
+
+        departamento.quitarEmpleado(empleado1);
+
+        assertSame(empleado2, departamento.getEmpleados().get(0));
     }
 
     @Test
     void testInvitar() {
         Departamento departamento = new Departamento("IT");
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+
         departamento.agregarEmpleado(empleado);
+
         Date fecha = new Date();
         Instant horaPrevista = Instant.now();
         Duration duracionPrevista = Duration.ofHours(2);
         String sala = "sala 2";
+
         Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
                 sala);
+
         departamento.invitar(reunion);
+
+        //PORQUE ESTE TIPO DE TEST Y CON ESA VARIABLE
         assertEquals(1, reunion.getTipo());
 
     }
@@ -67,9 +81,12 @@ class DepartamentoTest {
         Departamento departamento = new Departamento("IT");
         Empleado empleado1 = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
         Empleado empleado2 = new Empleado("2", "Benavides", "Antonio", "antonio@example.com");
+
         departamento.agregarEmpleado(empleado1);
         departamento.agregarEmpleado(empleado2);
+
         List<Empleado> empleados = departamento.getEmpleados();
+
         assertEquals(2, empleados.size());
         assertEquals(empleado1, empleados.get(0));
         assertEquals(empleado2, empleados.get(1));

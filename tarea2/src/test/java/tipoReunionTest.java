@@ -3,7 +3,7 @@ import Clases.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TipoReunionTest {
+class tipoReunionTest {
 
     @Test
     public void testTipoReunionEnum() {
