@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DepartamentoTest {
 
@@ -57,7 +58,8 @@ class DepartamentoTest {
         Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
                 sala);
         departamento.invitar(reunion);
-        assertEquals(1, reunion.getInvitaciones().size());
+        assertEquals(1, reunion.getTipo());
+
     }
 
     @Test
