@@ -1,10 +1,15 @@
 import Clases.*;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import Clases.Informe;
 import Clases.Reunion;
+import java.io.File;
+import java.io.IOException;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class InformeTest {
 
@@ -28,8 +33,12 @@ public class InformeTest {
         Reunion reunion = new Reunion();
         Informe informe = new Informe(reunion);
         String fileName = "informe.txt";
-        informe.exportarInformeTXT(fileName);
-        assertTrue(new File(fileName).exists());
+        try {
+            informe.exportarInformeTXT(fileName);
+            assertTrue(new File(fileName).exists());
+        } catch (IOException e) {
+            fail("IOException no debe ser lanzada en este caso");
+        }
 
     }
 

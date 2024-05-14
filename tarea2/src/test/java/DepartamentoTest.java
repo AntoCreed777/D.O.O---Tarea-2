@@ -2,6 +2,7 @@ import Clases.*;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +48,7 @@ class DepartamentoTest {
         Departamento departamento = new Departamento("IT");
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
         departamento.agregarEmpleado(empleado);
-        Reunion reunion = new Reunion("Reunion de IT");
+        Reunion reunion = new Reunion(empleado, tipoReunion.TECNICA, Date, Instant.now(), Duration.ofHours(1));
         departamento.invitar(reunion);
         assertEquals(1, empleado.getInvitaciones().size());
     }

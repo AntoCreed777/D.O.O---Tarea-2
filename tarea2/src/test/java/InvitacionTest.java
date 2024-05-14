@@ -11,7 +11,8 @@ class InvitacionTest {
 
     @Test
     void testGetInvitado() {
-        Reunion reunion = new Reunion("Taller de desarrollo", Instant.now().plus(1, ChronoUnit.HOURS));
+        Reunion reunion = new ReunionPresencial("Taller de desarrollo", Instant.now().plus(1, ChronoUnit.HOURS),
+                Duration.ofHours(1), "Sala de conferencias");
         Departamento invitado = new Departamento("IT");
         Invitacion invitacion = new Invitacion(reunion, invitado);
 

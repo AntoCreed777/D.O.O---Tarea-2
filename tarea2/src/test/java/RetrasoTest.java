@@ -1,6 +1,4 @@
-
 import Clases.*;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -11,23 +9,21 @@ public class RetrasoTest {
 
     @Test
     public void testRetrasoConstructor() {
-
-        Empleado empleadoMock = Mockito.mock(Empleado.class);
+        Empleado empleado = new Empleado("1", "Apellido", "Nombre", "correo@example.com");
         Instant hora = Instant.now().minus(10, ChronoUnit.MINUTES);
 
-        Retraso retraso = new Retraso(empleadoMock, hora);
+        Retraso retraso = new Retraso(empleado, hora);
 
         Assertions.assertNotNull(retraso);
-        Assertions.assertEquals(empleadoMock, retraso.getEmpleado());
+        Assertions.assertEquals(empleado, retraso.getEmpleado());
         Assertions.assertEquals(hora, retraso.getHora());
     }
 
     @Test
     public void testRetrasoToString() {
-
-        Empleado empleadoMock = Mockito.mock(Empleado.class);
+        Empleado empleado = new Empleado("1", "Apellido", "Nombre", "correo@example.com");
         Instant hora = Instant.now().minus(10, ChronoUnit.MINUTES);
-        Retraso retraso = new Retraso(empleadoMock, hora);
+        Retraso retraso = new Retraso(empleado, hora);
 
         String result = retraso.toString();
 
