@@ -1,3 +1,8 @@
+/**
+ * Clase que representa un departamento de una empresa.
+ * @author Maria Jose San Martin
+ */
+
 import Clases.*;
 
 import org.junit.jupiter.api.Test;
@@ -9,24 +14,16 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
+/*
+ * Test unitario que verifica el funcionamiento de la clase Departamento este correcto.
+ */
 class DepartamentoTest {
 
     @Test
     void testGetNombre() {
         Departamento departamento = new Departamento("IT");
         assertEquals("IT", departamento.getNombre());
-    }
-
-    @Test
-    void testObtenerCantidadEmpleados() {
-        Departamento departamento = new Departamento("IT");
-        Empleado empleado1 = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        Empleado empleado2 = new Empleado("2", "Benavides", "Antonio", "antonio@example.com");
-
-        departamento.agregarEmpleado(empleado1);
-        departamento.agregarEmpleado(empleado2);
-
-        assertEquals(2, departamento.obtenerCantidadEmpleados());
     }
 
     @Test
@@ -39,8 +36,22 @@ class DepartamentoTest {
     }
 
     @Test
+    void testObtenerCantidadEmpleados() {
+        Departamento departamento = new Departamento("IT");
+
+        Empleado empleado1 = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+        Empleado empleado2 = new Empleado("2", "Benavides", "Antonio", "antonio@example.com");
+
+        departamento.agregarEmpleado(empleado1);
+        departamento.agregarEmpleado(empleado2);
+
+        assertEquals(2, departamento.obtenerCantidadEmpleados());
+    }
+
+    @Test
     void testQuitarEmpleado() {
         Departamento departamento = new Departamento("IT");
+
         Empleado empleado1 = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
         Empleado empleado2 = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
 
@@ -55,6 +66,7 @@ class DepartamentoTest {
     @Test
     void testInvitar() {
         Departamento departamento = new Departamento("IT");
+
         Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
 
         departamento.agregarEmpleado(empleado);
@@ -64,8 +76,7 @@ class DepartamentoTest {
         Duration duracionPrevista = Duration.ofHours(2);
         String sala = "sala 2";
 
-        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
-                sala);
+        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista, sala);
 
         departamento.invitar(reunion);
 

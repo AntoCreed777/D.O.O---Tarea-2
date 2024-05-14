@@ -1,3 +1,8 @@
+/**
+ * Clase que representa un departamento de una empresa.
+ * @author Maria Jose San Martin
+ */ 
+
 import Clases.*;
 
 import org.junit.jupiter.api.Test;
@@ -11,6 +16,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/*
+ * Test unitario que verifica el funcionamiento de la clase Reunion este correcto.
+ */
 class ReunionTest {
 
     @Test
@@ -21,8 +29,7 @@ class ReunionTest {
         Duration duracionPrevista = Duration.ofMinutes(60);
         String sala = "sala 2";
 
-        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
-                duracionPrevista, sala);
+        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(), duracionPrevista, sala);
 
         assertEquals(organizador, reunion.getOrganizador());
     }
@@ -35,8 +42,7 @@ class ReunionTest {
         Duration duracionPrevista = Duration.ofMinutes(60);
         String sala = "sala 2";
 
-        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.TECNICA, fecha, Instant.now(), duracionPrevista,
-                sala);
+        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.TECNICA, fecha, Instant.now(), duracionPrevista, sala);
 
         assertEquals(tipoReunion.TECNICA, reunion.getTipo());
     }
@@ -49,8 +55,7 @@ class ReunionTest {
         Duration duracionPrevista = Duration.ofMinutes(60);
         String sala = "sala 2";
 
-        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
-                duracionPrevista, sala);
+        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(), duracionPrevista, sala);
 
         assertEquals(fecha, reunion.getFecha());
     }
@@ -64,8 +69,7 @@ class ReunionTest {
         Duration duracionPrevista = Duration.ofMinutes(60);
         String sala = "sala 2";
 
-        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
-                duracionPrevista, sala);
+        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, horaPrevista, duracionPrevista, sala);
 
         assertEquals(horaPrevista, reunion.getHoraPrevista());
 
@@ -93,13 +97,13 @@ class ReunionTest {
         Duration duracionPrevista = Duration.ofMinutes(60);
         String sala = "sala 2";
 
-        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
-                duracionPrevista, sala);
+        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(), duracionPrevista, sala);
 
         Empleado empleado1 = new Empleado("2", "Benavides", "Antonio", "antonio@example.com");
         Empleado empleado2 = new Empleado("3", "Gomez", "Juan", "juan@example.com");
 
         List<Asistencia> asistencias = new ArrayList<>();
+        
         asistencias.add(new Asistencia(empleado1));
         asistencias.add(new Asistencia(empleado2));
 

@@ -1,3 +1,8 @@
+/**
+ * Clase que representa un departamento de una empresa.
+ * @author Maria Jose San Martin
+ */
+
 import Clases.*;
 
 import org.junit.jupiter.api.Test;
@@ -7,6 +12,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
+
+/*
+ * Test unitario que verifica el funcionamiento de la clase Empleado este correcto.
+ */
 
 class EmpleadoTest {
 
@@ -37,8 +46,7 @@ class EmpleadoTest {
         Duration duracionPrevista = Duration.ofHours(2);
         String sala = "sala 2";
 
-        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
-                sala);
+        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista, sala);
 
         empleado.invitar(reunion);
 

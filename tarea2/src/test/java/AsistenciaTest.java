@@ -1,3 +1,8 @@
+/**
+ * Clase que representa un departamento de una empresa.
+ * @author Maria Jose San Martin
+ */
+
 import Clases.*;
 
 import org.junit.jupiter.api.Test;
@@ -6,7 +11,11 @@ import Clases.Empleado;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class AsistenciaTest {
+
+/*
+ * Test unitario que verifica el funcionamiento de la clase Asistencia este correcto.
+ */
+class AsistenciaTest{
 
     @Test
     void testGetEmpleado() {

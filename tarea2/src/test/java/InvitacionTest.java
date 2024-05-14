@@ -1,3 +1,8 @@
+/**
+ * Clase que representa un departamento de una empresa.
+ * @author Maria Jose San Martin
+ */ 
+
 import Clases.*;
 
 import org.junit.jupiter.api.Test;
@@ -8,6 +13,9 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/*
+ * Test unitario que verifica el funcionamiento de la clase Invitacion este correcto.
+ */
 class InvitacionTest {
 
     @Test
@@ -18,8 +26,7 @@ class InvitacionTest {
         Duration duracionPrevista = Duration.ofHours(2);
         String sala = "sala 2";
 
-        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
-                sala);
+        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista, sala);
 
         Departamento invitado = new Departamento("IT");
 
@@ -27,6 +34,8 @@ class InvitacionTest {
 
         assertEquals(invitado, invitacion.getInvitado());
     }
+
+
 
     @Test
     void testGetHora() {
@@ -42,7 +51,7 @@ class InvitacionTest {
         Departamento invitado = new Departamento("IT");
         Invitacion invitacion = new Invitacion(reunion, invitado);
 
-        assertEquals(reunion.getHoraPrevista(), invitacion.getHora());
+        assertEquals(reunion.getHoraPrevista(), invitacion.getHora());    // revisar que la hora prevista de la reunion sea la misma que la hora de la invitacion.
     }
 
     @Test
@@ -53,8 +62,7 @@ class InvitacionTest {
         Duration duracionPrevista = Duration.ofHours(2);
         String sala = "sala 2";
 
-        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
-                sala);
+        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista, sala);
 
         Departamento invitado = new Departamento("IT");
         Invitacion invitacion = new Invitacion(reunion, invitado);
