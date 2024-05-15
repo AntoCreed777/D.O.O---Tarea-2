@@ -242,7 +242,7 @@ class ReunionPresencialTest {
         Duration duracionPrevista = Duration.ofMinutes(60);
         String sala = "sala 2";
 
-        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
+        ReunionPresencial reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
                 duracionPrevista, sala);
 
         assertEquals("Representa una reunion de una empresa en una sala", reunion.toString());

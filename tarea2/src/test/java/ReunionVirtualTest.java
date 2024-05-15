@@ -241,7 +241,7 @@ class ReunionVirtualTest {
         Duration duracionPrevista = Duration.ofMinutes(60);
         String sala = "sala 2";
 
-        Reunion reunion = new ReunionVirtual(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
+        ReunionVirtual reunion = new ReunionVirtual(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
                 duracionPrevista, sala);
 
         assertEquals("Representa una reunion de una empresa de forma virtual",reunion.toString());

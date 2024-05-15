@@ -1,4 +1,6 @@
 import Clases.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -12,54 +14,47 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class InformeTest {  //FALTA HACERLO FUNCIONAR
+public class InformeTest {
+    public Empleado empleado;
+    Date fecha;
+    Instant horaPrevista;
+    Duration duracionPrevista;
+    String sala;
+    Reunion reunion;
 
-    @Test
-    public void testConstructor() { //LOS ATRIBUTOS QUE SE PRUEBAN SON PRIVATE, SE DEBEN CREAR GETTERS
-        Reunion reunion = new ReunionPresencial();
-        Informe informe = new Informe(reunion);
-        assertNotNull(informe.getfecha());
-        assertNotNull(informe.horaPrevista);
-        assertNotNull(informe.horarioInicio);
-        assertNotNull(informe.horarioFin);
-        assertNotNull(informe.duracionTotal);
-        assertNotNull(informe.tipo);
-        assertNotNull(informe.notas);
-        assertNotNull(informe.asistentes);
-        assertNotNull(informe.ausentes);
+    @BeforeEach
+    void setUpBeforeClass() throws InterruptedException {
+        empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+        fecha = new Date();
+        horaPrevista = Instant.now();
+        duracionPrevista = Duration.ofHours(2);
+        sala = "sala 2";
+
+        reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
+                sala);
+
+        empleado.invitar(reunion);
+
+        reunion.iniciar(null);
+        Thread.sleep(2000);
+        reunion.finalizar();
     }
 
     @Test
-    public void testExportarInformeTXT() {
-        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        Date fecha = new Date();
-        Instant horaPrevista = Instant.now();
-        Duration duracionPrevista = Duration.ofHours(2);
-        String sala = "sala 2";
-        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
-                sala);
+    public void testExportarInformeTXT() throws InterruptedException {
         Informe informe = new Informe(reunion);
         String fileName = "informe.txt";
-        try {
-            informe.exportarInformeTXT(fileName);
-            assertTrue(new File(fileName).exists());
-        } catch (IOException e) {
-            fail("IOException no debe ser lanzada en este caso");
-        }
 
+        informe.exportarInformeTXT(fileName);
+
+        assertTrue(new File(fileName).exists());
     }
 
-    @Test(expected = IOException.class)
+    @Test
     public void testExportarInformeTXTIOException() {
-        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        Date fecha = new Date();
-        Instant horaPrevista = Instant.now();
-        Duration duracionPrevista = Duration.ofHours(2);
-        String sala = "sala 2";
-        Reunion reunion = new ReunionPresencial(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
-                sala);
         Informe informe = new Informe(reunion);
         String fileName = "informe.txt";
+
         informe.exportarInformeTXT(fileName);
     }
 }

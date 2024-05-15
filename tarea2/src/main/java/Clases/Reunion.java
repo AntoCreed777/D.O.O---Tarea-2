@@ -108,6 +108,8 @@ abstract public class Reunion{
 
         List<Empleado> auxAsistencias = new ArrayList<Empleado>(); //Lista de asistentes a la reunion
 
+        if(asistencias==null){return null;}
+
         for(Asistencia a : asistencias){                         //Se recorren las asistencias
             auxAsistencias.add(a.getEmpleado());                //Se agregan los empleados a la lista de auxiliar de empleados asistentes
         }
@@ -141,6 +143,7 @@ abstract public class Reunion{
      * @return Cantidad de asistencias de la reunion.
      */
     public int obtenerTotalAsistencia(){
+        if(obtenerAsistencias()==null){return 0;}
         return obtenerAsistencias().size();
     }
 
@@ -149,7 +152,7 @@ abstract public class Reunion{
      * @return Porcentaje de asistencia de la reunion.
      */
     public float obtenerPorcentajeAsistencia(){
-        return ((float)obtenerTotalAsistencia()/(obtenerTotalAsistencia() + obtenerAusencias().size()))*100;
+        return ((float)obtenerTotalAsistencia()/(float)getInvitados().size())*100;
     }
 
     
