@@ -5,6 +5,7 @@
 
 import Clases.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,17 +14,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Test unitario que verifica el funcionamiento de la clase Nota este correcto.
  */
 class NotaTest {
+    String contenido;
+    Nota nota;
 
-    @Test
-    void testGetContenido() {
-        String contenido = "Este es un ejemplo de nota";
-        Nota nota = new Nota(contenido);
-        assertEquals(contenido, nota.getContenido());
+    @BeforeEach
+    void setUp() {
+        contenido = "Este es un ejemplo de nota";
+        nota = new Nota(contenido);
     }
 
     @Test
+    void testGetContenido() {assertEquals(contenido, nota.getContenido());}
+
+    @Test
     void testToString() {
-        Nota nota = new Nota("Este es un ejemplo de nota");
         String expectedToString = "'Nota' representa a una nota de texto que indique algo con respecto a la reunion";
         assertEquals(expectedToString, nota.toString());
     }

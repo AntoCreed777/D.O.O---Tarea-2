@@ -5,6 +5,7 @@
 
 import Clases.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,29 +19,24 @@ import java.util.Date;
  */
 
 class EmpleadoTest {
+    Empleado empleado;
+
+    @BeforeEach
+    void setUp() {
+        empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+
+    }
+    @Test
+    void TestObtenerNombre() {assertEquals("Valeria", empleado.getNombre());}
 
     @Test
-    void TestObtenerNombre() {
-        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        assertEquals("Valeria", empleado.getNombre());
-    }
+    void TestObtenerApellidos() {assertEquals("Quiroga", empleado.getApellidos());}
 
     @Test
-    void TestObtenerApellidos() {
-        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        assertEquals("Quiroga", empleado.getApellidos());
-    }
-
-    @Test
-    void TestObtenerCorreo() {
-        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        assertEquals("valeria@example.com", empleado.getCorreo());
-    }
+    void TestObtenerCorreo() {assertEquals("valeria@example.com", empleado.getCorreo());}
 
     @Test
     void TestInvitarYAdministrarInvitaciones() {
-        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-
         Date fecha = new Date();
         Instant horaPrevista = Instant.now();
         Duration duracionPrevista = Duration.ofHours(2);
@@ -54,9 +50,5 @@ class EmpleadoTest {
     }
 
     @Test
-    void TestId(){
-        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-
-        assertEquals("1", empleado.getId());
-    }
+    void TestId(){assertEquals("1", empleado.getId());}
 }

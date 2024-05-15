@@ -28,6 +28,6 @@ public enum tipoReunion {
      */
     @Override
     public String toString() {
-        return "'Enumeracion' representa a todas las tipos de reuniones que se pueden realizar";
+        return "Representa al tipo de reunion que se puede realizar";
     }
 }

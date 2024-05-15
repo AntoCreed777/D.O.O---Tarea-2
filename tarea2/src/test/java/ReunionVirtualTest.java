@@ -1,10 +1,12 @@
 /**
  * Clase que representa un departamento de una empresa.
  * @author Maria Jose San Martin
- */ 
+ */
+
 
 import Clases.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
@@ -21,38 +23,47 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /*
  * Test unitario que verifica el funcionamiento de la clase ReunionVirtual este correcto.
  */
-
 class ReunionVirtualTest {
+    Date fecha;
+    Instant horaPrevista;
+    Duration duracionPrevista;
+    Empleado organizador;
+    String sala;
+    ReunionVirtual reunion;
+
+    @BeforeEach
+    void setUp() {
+        fecha = new Date();
+        horaPrevista = Instant.now();
+        duracionPrevista = Duration.ofHours(1);
+        organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
+        sala = "sala 2";
+
+        reunion = new ReunionVirtual(organizador, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
+                sala);
+    }
 
     @Test
-    void testInvitadoAReunion() {  //ESTA MUY RARO
-        Date fecha = new Date();
-        Instant horaPrevista = Instant.now();
-        Duration duracionPrevista = Duration.ofHours(1);
-        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        String enlace = "enlace 2";
-
-        Reunion reunion = new ReunionVirtual(empleado, tipoReunion.OTRO, fecha, horaPrevista, duracionPrevista,
-                enlace);
-
-        empleado.invitar(reunion);
+    void testInvitadoAReunion() {
+        organizador.invitar(reunion);
 
         boolean aux = false;
-        for (Invitacion invitado: reunion.getInvitados()){
-            if(invitado.getInvitado().equals(empleado)){
+        for (Invitacion invitado : reunion.getInvitados()) {
+            if (invitado.getInvitado().equals(organizador)) {
                 aux = true;
                 break;
             }
         }
 
-        assertTrue(aux); //Se comprueba que el empleado este en la lista ded Invitados
+        Assertions.assertTrue(aux); //Se comprueba que el empleado este en la lista ded Invitados
 
         Empleado otroEmpleado = new Empleado("2", "Quiroga", "Juan", "juan@example.com");
 
         aux = false;
-        for (Invitacion invitado: reunion.getInvitados()){
-            if(invitado.getInvitado().equals(otroEmpleado)){
-                aux = true;break;
+        for (Invitacion invitado : reunion.getInvitados()) {
+            if (invitado.getInvitado().equals(otroEmpleado)) {
+                aux = true;
+                break;
             }
         }
 
@@ -60,73 +71,19 @@ class ReunionVirtualTest {
     }
 
     @Test
-    void testObtenerEnlace() {
-        String enlace = "Enlace 1";
-        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        Date fecha = new Date();
-        Instant horaPrevista = Instant.now();
-        Duration duracionPrevista = Duration.ofHours(2);
-
-        ReunionVirtual reunionVirtual = new ReunionVirtual(empleado, tipoReunion.OTRO, fecha, horaPrevista,
-                duracionPrevista, enlace);
-
-        Assertions.assertEquals(enlace, reunionVirtual.getEnlace());
-    }
+    void testObtenerEnlace() {Assertions.assertEquals(sala, reunion.getEnlace());}
 
     @Test
-    void testGetOrganizador() {
-        Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-
-        Date fecha = new Date();
-        Duration duracionPrevista = Duration.ofMinutes(60);
-        String sala = "sala 2";
-
-        Reunion reunion = new ReunionVirtual(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
-                duracionPrevista, sala);
-
-        assertEquals(organizador, reunion.getOrganizador());
-    }
+    void testGetOrganizador() {assertEquals(organizador, reunion.getOrganizador());}
 
     @Test
-    void testGetTipo() {
-        Empleado empleado = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-
-        Date fecha = new Date();
-        Duration duracionPrevista = Duration.ofMinutes(60);
-        String sala = "sala 2";
-
-        Reunion reunion = new ReunionVirtual(empleado, tipoReunion.TECNICA, fecha, Instant.now(), duracionPrevista,
-                sala);
-
-        assertEquals(tipoReunion.TECNICA, reunion.getTipo());
-    }
+    void testGetTipo() {assertEquals(tipoReunion.OTRO, reunion.getTipo());}
 
     @Test
-    void testGetFecha() {
-        Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-
-        Date fecha = new Date();
-        Duration duracionPrevista = Duration.ofMinutes(60);
-        String sala = "sala 2";
-
-        Reunion reunion = new ReunionVirtual(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
-                duracionPrevista, sala);
-
-        assertEquals(fecha, reunion.getFecha());
-    }
+    void testGetFecha() {assertEquals(fecha, reunion.getFecha());}
 
     @Test
     void testGetHorarios() {
-        Instant horaPrevista = Instant.now();
-        Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-
-        Date fecha = new Date();
-        Duration duracionPrevista = Duration.ofMinutes(60);
-        String sala = "sala 2";
-
-        Reunion reunion = new ReunionVirtual(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
-                duracionPrevista, sala);
-
         assertEquals(horaPrevista, reunion.getHoraPrevista());
 
         reunion.iniciar(null);
@@ -141,26 +98,10 @@ class ReunionVirtualTest {
     }
 
     @Test
-    void testGetDuracion() {
-        Duration duracion = Duration.ofMinutes(60);
-        Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-
-        Date fecha = new Date();
-        String sala = "sala 2";
-        Reunion reunion = new ReunionVirtual(organizador, tipoReunion.TECNICA, fecha, Instant.now(), duracion, sala);
-        assertEquals(duracion, reunion.getDuracionPrevista());
-    }
+    void testGetDuracion() {assertEquals(duracionPrevista, reunion.getDuracionPrevista());}
 
     @Test
     void testAsistencias() {
-        Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        Date fecha = new Date();
-        Duration duracionPrevista = Duration.ofMinutes(60);
-        String sala = "sala 2";
-
-        Reunion reunion = new ReunionVirtual(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
-                duracionPrevista, sala);
-
         Empleado empleado1 = new Empleado("2", "Benavides", "Antonio", "antonio@example.com");
         Empleado empleado2 = new Empleado("3", "Gomez", "Juan", "juan@example.com");
 
@@ -206,7 +147,7 @@ class ReunionVirtualTest {
     }
 
     @Test
-    void testObtenerRetrasos() {
+    void testRetrasos() {
         Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
         Date fecha = new Date();
         Duration duracionPrevista = Duration.ofMinutes(60);
@@ -235,63 +176,25 @@ class ReunionVirtualTest {
     }
 
     @Test
-    void testToString(){
-        Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        Date fecha = new Date();
-        Duration duracionPrevista = Duration.ofMinutes(60);
-        String sala = "sala 2";
-
-        ReunionVirtual reunion = new ReunionVirtual(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
-                duracionPrevista, sala);
-
-        assertEquals("Representa una reunion de una empresa de forma virtual",reunion.toString());
-    }
+    void testToString() {assertEquals("Representa una reunion de una empresa de forma virtual", reunion.toString());}
 
     @Test
     void testAgregarNota() {
-        Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        Date fecha = new Date();
-        Duration duracionPrevista = Duration.ofMinutes(60);
-        String sala = "sala 2";
-
-        Reunion reunion = new ReunionVirtual(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
-                duracionPrevista, sala);
-
         Nota nota1 = new Nota("Nota numero 1");
-
         reunion.agregarNota(nota1);
         assertEquals(1, reunion.getNotas().size());
     }
 
     @Test
     void testGetNotas() {
-        Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        Date fecha = new Date();
-        Duration duracionPrevista = Duration.ofMinutes(60);
-        String sala = "sala 2";
-
-        Reunion reunion = new ReunionVirtual(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
-                duracionPrevista, sala);
-
         Nota nota1 = new Nota("Nota numero 1");
-
         reunion.agregarNota(nota1);
-
         assertEquals(nota1, reunion.getNotas().get(0));
     }
 
     @Test
     void testCalcularTiempoReal() {
-        Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        Date fecha = new Date();
-        Duration duracionPrevista = Duration.ofMinutes(60);
-        String sala = "sala 2";
-
-        Reunion reunion = new ReunionVirtual(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
-                duracionPrevista, sala);
-
         reunion.iniciar(null);
-
         try {
             Thread.sleep(2000);
 
@@ -299,22 +202,12 @@ class ReunionVirtualTest {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
         reunion.finalizar();
-
         assertEquals(2, reunion.calcularTiempoReal());
     }
 
     @Test
     void testObtenerPorcentajeAsistencia() {
-        Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        Date fecha = new Date();
-        Duration duracionPrevista = Duration.ofMinutes(60);
-        String sala = "sala 2";
-
-        Reunion reunion = new ReunionVirtual(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
-                duracionPrevista, sala);
-
         Empleado empleado1 = new Empleado("2", "Juan", "Antonio", "antonio@example.com");
         Empleado empleado2 = new Empleado("3", "Gomez", "Juan", "juan@example.com");
         Empleado empleado3 = new Empleado("4", "Juan", "Antonio", "antonio@example.com");
