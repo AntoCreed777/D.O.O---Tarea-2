@@ -15,6 +15,7 @@ El proyecto está organizado en paquetes y clases:
 [![Typing SVG](https://readme-typing-svg.demolab.com/?lines=UML+del+código:)](https://git.io/typing-svg)
 
 
-![Desarrollo Orientado al Objeto Tarea 2](https://github.com/AntoCreed777/D.O.O---Tarea-2/assets/135484422/07074a25-2f02-488f-a4ce-50c1e5937259)
+![Desarrollo Orientado al Objeto Tarea 2](https://github.com/AntoCreed777/D.O.O---Tarea-2/assets/135484422/c030e3b3-07c3-4f8e-a62f-7eb3a44428fa)
+
 
 
