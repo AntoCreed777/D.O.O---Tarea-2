@@ -86,7 +86,7 @@ class ReunionPresencialTest {
     void testGetHorarios() {
         assertEquals(horaPrevista, reunion.getHoraPrevista());
 
-        reunion.iniciar(null);
+        reunion.iniciar();
 
         long diferenciaSegundos = Math.abs(reunion.getHorarioInicio().getEpochSecond() - Instant.now().getEpochSecond());
         assertTrue(diferenciaSegundos < 1);
@@ -105,11 +105,10 @@ class ReunionPresencialTest {
         Empleado empleado1 = new Empleado("2", "Benavides", "Antonio", "antonio@example.com");
         Empleado empleado2 = new Empleado("3", "Gomez", "Juan", "juan@example.com");
 
-        List<Asistencia> asistencias = new ArrayList<>();
-        asistencias.add(new Asistencia(empleado1));
-        asistencias.add(new Asistencia(empleado2));
+        reunion.marcarAsistencia(empleado1);
+        reunion.marcarAsistencia(empleado2);
 
-        reunion.iniciar(asistencias);
+        reunion.iniciar();
 
         List<Asistencia> asistenciasObtenidas = reunion.obtenerAsistencias();
 
@@ -121,24 +120,15 @@ class ReunionPresencialTest {
 
     @Test
     void testObtenerAusencias() {
-        Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        Date fecha = new Date();
-        Duration duracionPrevista = Duration.ofMinutes(60);
-        String sala = "sala 2";
-
-        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
-                duracionPrevista, sala);
-
         Empleado empleado1 = new Empleado("2", "Benavides", "Antonio", "antonio@example.com");
         Empleado empleado2 = new Empleado("3", "Gomez", "Juan", "juan@example.com");
 
         empleado1.invitar(reunion);
         empleado2.invitar(reunion);
 
-        List<Asistencia> asistencias = new ArrayList<>();
-        asistencias.add(new Asistencia(empleado1));
+        reunion.marcarAsistencia(empleado1);
 
-        reunion.iniciar(asistencias);
+        reunion.iniciar();
 
         List<Empleado> ausencias = reunion.obtenerAusencias();
 
@@ -148,27 +138,17 @@ class ReunionPresencialTest {
 
     @Test
     void testRetrasos() {
-        Empleado organizador = new Empleado("1", "Quiroga", "Valeria", "valeria@example.com");
-        Date fecha = new Date();
-        Duration duracionPrevista = Duration.ofMinutes(60);
-        String sala = "sala 2";
-
-        Reunion reunion = new ReunionPresencial(organizador, tipoReunion.TECNICA, fecha, Instant.now(),
-                duracionPrevista, sala);
-
         Empleado empleado1 = new Empleado("2", "Benavides", "Antonio", "antonio@example.com");
         Empleado empleado2 = new Empleado("3", "Gomez", "Juan", "juan@example.com");
 
-        List<Asistencia> asistencias = new ArrayList<>();
+        reunion.marcarAsistencia(empleado1);
 
-        asistencias.add(new Asistencia(empleado1));
-
-        reunion.iniciar(asistencias);
+        reunion.iniciar();
 
         List<Asistencia> retrasos = reunion.obtenerRetrasos();
         assertEquals(0, retrasos.size());
 
-        reunion.agregarRetrasado(empleado2);
+        reunion.marcarAsistencia(empleado2);
 
         retrasos = reunion.obtenerRetrasos();
         assertEquals(1, retrasos.size());
@@ -194,7 +174,7 @@ class ReunionPresencialTest {
 
     @Test
     void testCalcularTiempoReal() {
-        reunion.iniciar(null);
+        reunion.iniciar();
         try {
             Thread.sleep(2000);
 
@@ -216,14 +196,13 @@ class ReunionPresencialTest {
         empleado2.invitar(reunion);
         empleado3.invitar(reunion);
 
-        List<Asistencia> asistencias = new ArrayList<Asistencia>();
-        asistencias.add(new Asistencia(empleado1));
+        reunion.marcarAsistencia(empleado1);
 
-        reunion.iniciar(asistencias);
+        reunion.iniciar();
 
         assertEquals(33, (int) reunion.obtenerPorcentajeAsistencia()); //PORCENTAJE
 
-        reunion.agregarRetrasado(empleado2);
+        reunion.marcarAsistencia(empleado2);
 
         assertEquals(66, (int) reunion.obtenerPorcentajeAsistencia()); //PORCENTAJE
     }

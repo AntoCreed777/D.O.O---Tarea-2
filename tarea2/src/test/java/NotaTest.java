@@ -28,7 +28,6 @@ class NotaTest {
 
     @Test
     void testToString() {
-        String expectedToString = "'Nota' representa a una nota de texto que indique algo con respecto a la reunion";
-        assertEquals(expectedToString, nota.toString());
+        assertEquals("Representa a una nota de texto que indique algo con respecto a la reunion", nota.toString());
     }
 }

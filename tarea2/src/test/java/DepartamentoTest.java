@@ -42,13 +42,19 @@ class DepartamentoTest {
     }
 
     @Test
-    void testObtenerCantidadEmpleados() {assertEquals(2, departamento.obtenerCantidadEmpleados());}
-
-    @Test
     void testQuitarEmpleado() {
         departamento.quitarEmpleado(empleado1);
         assertEquals(empleado2, departamento.getEmpleados().get(0));
     }
+
+    @Test
+    void testObtenerCantidadEmpleados() {
+        departamento.quitarEmpleado(empleado1);
+        assertEquals(1, departamento.obtenerCantidadEmpleados());
+        departamento.quitarEmpleado(empleado2);
+        assertEquals(0, departamento.obtenerCantidadEmpleados());
+    }
+
 
     @Test
     void testInvitar() {
@@ -71,8 +77,15 @@ class DepartamentoTest {
         assertEquals(2, empleados.size());
         assertEquals(empleado1, empleados.get(0));
         assertEquals(empleado2, empleados.get(1));
+
+        departamento.quitarEmpleado(empleado1);
+        departamento.quitarEmpleado(empleado2);
+
+        empleados = departamento.getEmpleados();
+
+        assertEquals(0, empleados.size());
     }
 
     @Test
-    void testToString() {assertEquals("'Departamento' representa a un departamento de una Empresa ", departamento.toString());}
+    void testToString() {assertEquals("Representa a un departamento de una Empresa", departamento.toString());}
 }

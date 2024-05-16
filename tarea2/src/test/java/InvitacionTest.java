@@ -49,4 +49,9 @@ class InvitacionTest {
 
     @Test
     void testGetReunion() {assertEquals(reunion, invitacion.getReunion());}
+
+    @Test
+    void testToString(){
+        assertEquals("Representa la invitacion que se le hace a un 'Departamento' o a un 'Empleado'",invitacion.toString());
+    }
 }

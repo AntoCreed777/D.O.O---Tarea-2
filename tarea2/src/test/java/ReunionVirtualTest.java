@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -86,7 +85,7 @@ class ReunionVirtualTest {
     void testGetHorarios() {
         assertEquals(horaPrevista, reunion.getHoraPrevista());
 
-        reunion.iniciar(null);
+        reunion.iniciar();
 
         long diferenciaSegundos = Math.abs(reunion.getHorarioInicio().getEpochSecond() - Instant.now().getEpochSecond());
         assertTrue(diferenciaSegundos < 1);
@@ -105,11 +104,10 @@ class ReunionVirtualTest {
         Empleado empleado1 = new Empleado("2", "Benavides", "Antonio", "antonio@example.com");
         Empleado empleado2 = new Empleado("3", "Gomez", "Juan", "juan@example.com");
 
-        List<Asistencia> asistencias = new ArrayList<>();
-        asistencias.add(new Asistencia(empleado1));
-        asistencias.add(new Asistencia(empleado2));
+        reunion.marcarAsistencia(empleado1);
+        reunion.marcarAsistencia(empleado2);
 
-        reunion.iniciar(asistencias);
+        reunion.iniciar();
 
         List<Asistencia> asistenciasObtenidas = reunion.obtenerAsistencias();
 
@@ -135,10 +133,9 @@ class ReunionVirtualTest {
         empleado1.invitar(reunion);
         empleado2.invitar(reunion);
 
-        List<Asistencia> asistencias = new ArrayList<>();
-        asistencias.add(new Asistencia(empleado1));
+        reunion.marcarAsistencia(empleado1);
 
-        reunion.iniciar(asistencias);
+        reunion.iniciar();
 
         List<Empleado> ausencias = reunion.obtenerAusencias();
 
@@ -159,16 +156,14 @@ class ReunionVirtualTest {
         Empleado empleado1 = new Empleado("2", "Benavides", "Antonio", "antonio@example.com");
         Empleado empleado2 = new Empleado("3", "Gomez", "Juan", "juan@example.com");
 
-        List<Asistencia> asistencias = new ArrayList<>();
+        reunion.marcarAsistencia(empleado1);
 
-        asistencias.add(new Asistencia(empleado1));
-
-        reunion.iniciar(asistencias);
+        reunion.iniciar();
 
         List<Asistencia> retrasos = reunion.obtenerRetrasos();
         assertEquals(0, retrasos.size());
 
-        reunion.agregarRetrasado(empleado2);
+        reunion.marcarAsistencia(empleado2);
 
         retrasos = reunion.obtenerRetrasos();
         assertEquals(1, retrasos.size());
@@ -194,7 +189,7 @@ class ReunionVirtualTest {
 
     @Test
     void testCalcularTiempoReal() {
-        reunion.iniciar(null);
+        reunion.iniciar();
         try {
             Thread.sleep(2000);
 
@@ -216,14 +211,13 @@ class ReunionVirtualTest {
         empleado2.invitar(reunion);
         empleado3.invitar(reunion);
 
-        List<Asistencia> asistencias = new ArrayList<Asistencia>();
-        asistencias.add(new Asistencia(empleado1));
+        reunion.marcarAsistencia(empleado1);
 
-        reunion.iniciar(asistencias);
+        reunion.iniciar();
 
         assertEquals(33, (int) reunion.obtenerPorcentajeAsistencia()); //PORCENTAJE
 
-        reunion.agregarRetrasado(empleado2);
+        reunion.marcarAsistencia(empleado2);
 
         assertEquals(66, (int) reunion.obtenerPorcentajeAsistencia()); //PORCENTAJE
     }

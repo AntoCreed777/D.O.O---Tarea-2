@@ -1,18 +1,14 @@
 import Clases.*;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+
 
 public class InformeTest {
     public Empleado empleado;
@@ -35,7 +31,7 @@ public class InformeTest {
 
         empleado.invitar(reunion);
 
-        reunion.iniciar(null);
+        reunion.iniciar();
         Thread.sleep(2000);
         reunion.finalizar();
     }

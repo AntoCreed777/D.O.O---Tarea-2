@@ -41,7 +41,9 @@ abstract public class Reunion{
         this.tipo = tipo;
 
         this.invitaciones = new ArrayList<Invitacion>(); //Crear lista para luego guardar las invitaciones.
+        this.asistencias = new ArrayList<Asistencia>();
         this.notas = new ArrayList<Nota>(); // Crear lista para luego guardar las notas.
+
     }
 
     /**
@@ -51,12 +53,10 @@ abstract public class Reunion{
     public void agregarInvitado(Invitacion invitacion){invitaciones.add(invitacion);}
 
     /**
-     * Funcion que inicia la reunion marcando la hora de inicio y la lista de asistencias.
-     * @param asistencia Lista de asistencias de la reunion.
+     * Funcion que inicia la reunion marcando la hora de inicio
      */
-    public void iniciar(List<Asistencia> asistencia){
+    public void iniciar(){
         this.horarioInicio = Instant.now();
-        this.asistencias = asistencia;
     }
     
     /**
@@ -68,15 +68,17 @@ abstract public class Reunion{
     
     //#region CALCULOS Y SETTERS
 
-     /**
-     * Funcion que agrega un retraso de un empleado a la reunion en un instante de tiempo.
-     * @param empleado 'Empleado' que llego tarde a la reunion.
+    /**
+     * Funcion que dependiendo de si la reunion ya comenzo o termino marca la asistencia del empleado
+     * @param empleado Quien llega a la reunion
      */
-    
-     public void agregarRetrasado(Empleado empleado){
-
-        Asistencia retraso = new Retraso(empleado, Instant.now());
-        asistencias.add(retraso);
+    public void marcarAsistencia(Empleado empleado){
+         if(horarioInicio == null){ //Si aun no comienza la reunion
+             asistencias.add(new Asistencia(empleado));
+         }
+         else if(horarioFin == null){ //Si ya comenzo la reunion pero aun no termina
+             asistencias.add(new Retraso(empleado,Instant.now()));
+         }
     }
 
      /**

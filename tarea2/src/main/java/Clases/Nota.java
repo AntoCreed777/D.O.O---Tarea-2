@@ -28,7 +28,5 @@ public class Nota {
      * @return Descripcion de la clase
      */
     @Override
-    public String toString() {
-        return "'Nota' representa a una nota de texto que indique algo con respecto a la reunion";
-    }
+    public String toString() {return "Representa a una nota de texto que indique algo con respecto a la reunion";}
 }

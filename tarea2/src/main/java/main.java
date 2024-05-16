@@ -8,8 +8,6 @@ import java.util.List;
 
 public class main {
     public static void main(String[] args) {
-
-
         Date fecha = new Date();
         Instant horaPrevista = Instant.now();
         Duration duracionPrevista = Duration.ofHours(1);
@@ -21,7 +19,6 @@ public class main {
         List<Nota> notas = new ArrayList<Nota>();
         notas.add(n1);
         notas.add(n2);
-        
         
         Empleado vq = new Empleado("1", "quiroga" , "valeria", "vquiroga");
         
@@ -36,16 +33,14 @@ public class main {
          
         reunion.agregarNota(n1);
         reunion.agregarNota(n2);
+
+        reunion.marcarAsistencia(vq);
         
-        Asistencia a1 = new Asistencia(vq);
-        List<Asistencia> asistentes = new ArrayList<Asistencia>();
-        asistentes.add(a1);
-        
-        reunion.iniciar(asistentes);
+        reunion.iniciar();
         try {
             Thread.sleep(2000);
             
-            reunion.agregarRetrasado(ksm);
+            reunion.marcarAsistencia(ksm);
 
             Thread.sleep(2000);
 
