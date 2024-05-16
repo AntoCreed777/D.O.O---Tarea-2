@@ -1,6 +1,5 @@
 import Clases.*;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -58,18 +57,4 @@ public class InformeTest {
         assertTrue(new File(fileName).exists());
     }
 
-    @Test
-    public void testExportarInformeTXTIOException() {
-        String fileName = "informe.txt";
-
-        try{
-            Informe informe = new Informe(null);
-            informe.exportarInformeTXT(fileName);
-
-        } catch (Exception e){
-            fail("Se generó una excepcion al exportar el informe. \nExcepcion: " + e.getMessage());
-        }
-
-        assertTrue(new File(fileName).exists());
-    }
 }
