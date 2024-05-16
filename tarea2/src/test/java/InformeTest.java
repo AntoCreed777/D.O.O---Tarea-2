@@ -1,4 +1,6 @@
 import Clases.*;
+
+import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +10,11 @@ import java.time.Instant;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+
 
 
 public class InformeTest {
@@ -38,19 +45,31 @@ public class InformeTest {
 
     @Test
     public void testExportarInformeTXT() throws InterruptedException {
-        Informe informe = new Informe(reunion);
         String fileName = "informe.txt";
 
-        informe.exportarInformeTXT(fileName);
+        try{
+            Informe informe = new Informe(reunion);
+            informe.exportarInformeTXT(fileName);
+
+        } catch (Exception e){
+            fail("Se generó una excepcion al exportar el informe. \nExcepcion: " + e.getMessage());
+        }
 
         assertTrue(new File(fileName).exists());
     }
 
     @Test
     public void testExportarInformeTXTIOException() {
-        Informe informe = new Informe(reunion);
         String fileName = "informe.txt";
 
-        informe.exportarInformeTXT(fileName);
+        try{
+            Informe informe = new Informe(null);
+            informe.exportarInformeTXT(fileName);
+
+        } catch (Exception e){
+            fail("Se generó una excepcion al exportar el informe. \nExcepcion: " + e.getMessage());
+        }
+
+        assertTrue(new File(fileName).exists());
     }
 }

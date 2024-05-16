@@ -129,6 +129,9 @@ class ReunionPresencialTest {
         reunion.marcarAsistencia(empleado1);
 
         reunion.iniciar();
+        reunion.finalizar();
+
+        reunion.marcarAsistencia(empleado2);
 
         List<Empleado> ausencias = reunion.obtenerAusencias();
 

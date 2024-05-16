@@ -62,7 +62,7 @@ public class Informe {
      * Funcion que escribe el informe en un archivo .txt
      * @param nombre Nombre de la ruta del archivo en que se quiere escribir el informe
      */
-    public void exportarInformeTXT(String nombre){
+    public void exportarInformeTXT(String nombre) throws InterruptedException{
         
         try {
 
@@ -132,6 +132,8 @@ public class Informe {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+
+            throw new InterruptedException("Error al exportar el informe en un archivo .txt");      
         }
         
     }

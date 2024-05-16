@@ -23,6 +23,7 @@ class DepartamentoTest {
     Departamento departamento;
     Empleado empleado1;
     Empleado empleado2;
+    
     @BeforeEach
     void setUp() {
         departamento = new Departamento("IT");

@@ -1,0 +1,27 @@
+Reunion tipo OTRO
+
+Fecha: Thu May 16 10:41:41 CLT 2024
+Hora prevista: 2024-05-16T14:41:41.879933400Z
+Hora de inicio: 2024-05-16T14:41:41.879933400Z, Hora de fin: 2024-05-16T14:41:43.895694200Z
+Duracion total: 2.0 segundos.
+
+Cantidad asistentes: 0
+Porcentaje asistentes: 0.0%
+
+Sala: sala 2
+
+Asistentes:
+
+
+
+Atrasos:
+
+
+
+Ausentes:
+	-Valeria Quiroga<valeria@example.com>
+
+
+
+Notas:
+
