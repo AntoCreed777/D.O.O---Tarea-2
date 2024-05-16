@@ -26,9 +26,7 @@ public class Invitacion {
      * Funcion que retorna a quien esta invitado
      * @return Quien este invitado, 'Departamento' o 'Empleado'
      */
-    public Invitable getInvitado(){
-        return invitado;
-    }
+    public Invitable getInvitado(){return invitado;}
 
     /**
      * Funcion que retorna a que hora fue invitado
@@ -51,7 +49,5 @@ public class Invitacion {
      * @return Descripcion de la clase
      */
     @Override
-    public String toString() {
-        return "'Invitacion' representa la invitacion que se le hace a un 'Departamento' o a un 'Empleado'";
-    }
+    public String toString() {return "Representa la invitacion que se le hace a un 'Departamento' o a un 'Empleado'";}
 }

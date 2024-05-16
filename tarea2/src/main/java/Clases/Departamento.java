@@ -1,6 +1,5 @@
 package Clases;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,6 +76,6 @@ public class Departamento implements Invitable{
      */
     @Override
     public String toString() {
-        return "'Departamento' representa a un departamento de una Empresa ";
+        return "Representa a un departamento de una Empresa";
     }
 }

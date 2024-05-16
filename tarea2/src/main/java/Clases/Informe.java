@@ -62,7 +62,7 @@ public class Informe {
      * Funcion que escribe el informe en un archivo .txt
      * @param nombre Nombre de la ruta del archivo en que se quiere escribir el informe
      */
-    public void exportarInformeTXT(String nombre){
+    public void exportarInformeTXT(String nombre) throws InterruptedException{
         
         try {
 
@@ -78,33 +78,41 @@ public class Informe {
             writer.write("\nPorcentaje asistentes: " + porcentajeAsistentes + "%");
 
             // imprimir el enlace o sala dependiendo del tipo de reunion
-            if(enlace != null){ writer.write("\n\nEnlace: " + enlace);}
-            else if(sala != null){ writer.write("\n\nSala: " + sala);}
+            if (enlace != null) {
+                writer.write("\n\nEnlace: " + enlace);
+            } else if (sala != null) {
+                writer.write("\n\nSala: " + sala);
+            }
 
             // escribir empleados asistentes.
             writer.write("\n\nAsistentes:\n");
-            for(Asistencia a: asistentes){
-                String empleado = a.getEmpleado().getNombre() + " " + a.getEmpleado().getApellidos() + "<" + a.getEmpleado().getCorreo() + ">";
-                writer.write("\t-" + empleado + "\n");
+            if (asistentes != null) {
+                for (Asistencia a : asistentes) {
+                    String empleado = a.getEmpleado().getNombre() + " " + a.getEmpleado().getApellidos() + "<" + a.getEmpleado().getCorreo() + ">";
+                    writer.write("\t-" + empleado + "\n");
+                }
             }
             writer.write("\n\n");
 
             // escirbir los retrasados con su hora de llegada
             writer.write("\nAtrasos:\n");
-            for(Asistencia a: asistentes){
-
-                if(a instanceof Retraso){
-                    String empleado = a.getEmpleado().getNombre() + " " + a.getEmpleado().getApellidos() + "<" + a.getEmpleado().getCorreo() + ">";
-                    writer.write("\t-" + empleado + " llego a las " + ((Retraso) a).getHora() + "\n");
+            if(asistentes != null) {
+                for (Asistencia a : asistentes) {
+                    if (a instanceof Retraso) {
+                        String empleado = a.getEmpleado().getNombre() + " " + a.getEmpleado().getApellidos() + "<" + a.getEmpleado().getCorreo() + ">";
+                        writer.write("\t-" + empleado + " llego a las " + ((Retraso) a).getHora() + "\n");
+                    }
                 }
             }
             writer.write("\n\n");
 
             // escribir empleados ausentes.
             writer.write("\nAusentes:\n");
-            for(Empleado e : ausentes){
-                String empleado = e.getNombre() + " " + e.getApellidos() + "<" + e.getCorreo() + ">";
-                writer.write("\t-" + empleado + "\n");
+            if(ausentes != null) {
+                for (Empleado e : ausentes) {
+                    String empleado = e.getNombre() + " " + e.getApellidos() + "<" + e.getCorreo() + ">";
+                    writer.write("\t-" + empleado + "\n");
+                }
             }
             writer.write("\n\n");
 
@@ -124,6 +132,8 @@ public class Informe {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+
+            throw new InterruptedException("Error al exportar el informe en un archivo .txt");      
         }
         
     }
